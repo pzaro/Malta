@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Μάλτα: Dousis Guide</title>
     <style>
-        /* CSS STYLES - Όπως ακριβώς το Βιέννη Guide */
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fdf6e3; color: #2c3e50; margin: 0; padding-bottom: 60px; }
         
         .header { background: #fff; position: sticky; top: 0; z-index: 900; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 10px 0; border-bottom: 3px solid #d4af37; }
@@ -94,17 +93,227 @@
     </div>
 
     <script>
-        let allData = [];
+        const allData = [
+          {
+            "days": [1, 2, 3, 4, 5, 6, 7],
+            "time": "Flexible",
+            "category": "🏨 Η Βάση μου",
+            "name": "Julina Boutique Living",
+            "distance": "0' (Mosta)",
+            "tip": "Το κέντρο των εξορμήσεών σου.",
+            "cost": "-",
+            "description": "Η βάση σου. Το ξενοδοχείο είναι στρατηγικά τοποθετημένο.\n📍 Μετακίνηση:\nΗ στάση 'Rotunda' είναι δίπλα. Από εδώ περνάει το X3 για αεροδρόμιο και πολλά λεωφορεία για Βαλέτα (41/42/48) και Mdina (202)."
+          },
+          {
+            "days": [1],
+            "time": "14:20",
+            "category": "✈️ Μεταφορές",
+            "name": "Αεροδρόμιο Μάλτας & Explore Card",
+            "distance": "Άφιξη",
+            "tip": "Explore Plus Me Card (Από το μηχάνημα).",
+            "cost": "33€",
+            "description": "Η πρώτη σου κίνηση.\n🎙️ Tip Δούση:\n'Ακούστε να δείτε. Μην ασχολείστε με μονά εισιτήρια. Παίρνετε την κάρτα των 33 ευρώ και έχετε για 7 μέρες απεριόριστα λεωφορεία, αλλά και 2 διαδρομές με το γρήγορο πλοίο για Βαλέτα και 2 για Gozo. Value for money!'"
+          },
+          {
+            "days": [1],
+            "time": "16:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Mosta Rotunda",
+            "distance": "2' περπάτημα",
+            "tip": "Ο 3ος μεγαλύτερος τρούλος στην Ευρώπη.",
+            "cost": "~5€",
+            "description": "📖 Ιστορία:\nΤο 1942, την ώρα της λειτουργίας, μια γερμανική βόμβα έπεσε ανάμεσα στους πιστούς και δεν εξερράγη ποτέ.\n🎙️ Tip Δούση:\n'Είναι το καμάρι της γειτονιάς σας. Μπείτε μέσα, κοιτάξτε ψηλά στον τρούλο και ζητήστε να δείτε το αντίγραφο της βόμβας στο σκευοφυλάκιο!'"
+          },
+          {
+            "days": [1],
+            "time": "20:00",
+            "category": "🥪 Φαγητό",
+            "name": "Ta' Marija (Mosta)",
+            "distance": "5' περπάτημα",
+            "tip": "Για παραδοσιακό κουνέλι.",
+            "cost": "~35€",
+            "description": "📖 Γαστρονομία:\nΤο εθνικό πιάτο είναι το κουνέλι στιφάδο.\n🎙️ Tip Δούση:\n'Το Ta' Marija είναι ίσως το πιο αυθεντικό μαλτέζικο εστιατόριο. Το κουνέλι τους λιώνει στο στόμα. Συνοδέψτε το με ένα τοπικό κρασί Marsovin!'"
+          },
+          
+          {
+            "days": [2],
+            "time": "10:00",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Mdina (Η Σιωπηλή Πόλη)",
+            "distance": "15' (με Bus 202)",
+            "tip": "Η παλιά πρωτεύουσα-καστροπολιτεία.",
+            "cost": "Δωρεάν",
+            "description": "📖 Ιστορία:\nΕκεί γυρίστηκαν σκηνές του Game of Thrones.\n🎙️ Tip Δούση:\n'Εδώ δεν βιάζεστε. Περπατήστε χωρίς χάρτη. Η πόλη λέγεται Σιωπηλή γιατί απαγορεύονται τα αυτοκίνητα. Φτάστε μέχρι τα τείχη στην πλατεία Bastion για πανοραμική θέα.'"
+          },
+          {
+            "days": [2],
+            "time": "13:00",
+            "category": "🥪 Φαγητό",
+            "name": "Crystal Palace (Is-Serkin)",
+            "distance": "Έξω από τα τείχη, στο Rabat",
+            "tip": "Τα καλύτερα Pastizzi του νησιού.",
+            "cost": "~2€",
+            "description": "📖 Γαστρονομία:\nΤα Pastizzi είναι σφολιάτα με ρικότα ή πουρέ μπιζελιού.\n🎙️ Tip Δούση:\n'Εδώ τρώνε οι ντόπιοι! Μια τρύπα είναι, αλλα βγάζει τα πιο φρέσκα Pastizzi. Πάρτε ένα με τυρί, ένα με αρακά και ζεστό τσάι σε γυάλινο ποτήρι. Συγκλονιστικό value for money!'"
+          },
+          {
+            "days": [2],
+            "time": "18:00",
+            "category": "🍸 Ποτό",
+            "name": "Fontanella Tea Garden",
+            "distance": "Επιστροφή στη Mdina",
+            "tip": "Κέικ σοκολάτας και κρασί.",
+            "cost": "~10€",
+            "description": "🎙️ Tip Δούση:\n'Επιστρέψτε στη Mdina για το ηλιοβασίλεμα. Φημίζεται για το κέικ σοκολάτας του, αλλά εγώ σας λέω να πάρετε ένα ποτήρι κρασί στο μπαλκόνι και να χαζέψετε τον ήλιο να πέφτει.'"
+          },
+
+          {
+            "days": [3],
+            "time": "09:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "St. John's Co-Cathedral (Βαλέτα)",
+            "distance": "35' (με Bus 41/42/48)",
+            "tip": "Δείτε τον αυθεντικό Καραβάτζιο.",
+            "cost": "15€",
+            "description": "📖 Ιστορία:\nΟ απόλυτος ορισμός του μπαρόκ. Στο πάτωμα 400 μαρμάρινοι τάφοι Ιπποτών.\n🎙️ Tip Δούση:\n'Στο ορατόριο βρίσκεται ο διάσημος πίνακας Ο Αποκεφαλισμός του Ιωάννη του Βαπτιστή του Καραβάτζιο. Είναι το μόνο έργο που υπέγραψε ποτέ!'"
+          },
+          {
+            "days": [3],
+            "time": "13:30",
+            "category": "🥪 Φαγητό",
+            "name": "Nenu The Artisan Baker",
+            "distance": "Στα στενά της Βαλέτας",
+            "tip": "Δοκιμάστε την παραδοσιακή Ftira.",
+            "cost": "~20€",
+            "description": "📖 Γαστρονομία:\nΗ Ftira είναι η μαλτέζικη εκδοχή της πίτσας σε ξυλόφουρνο.\n🎙️ Tip Δούση:\n'Ξεχάστε τις ιταλικές πίτσες. Εδώ θα δοκιμάσετε Ftira με ντομάτα, κάπαρη, ελιές και μαλτέζικο λουκάνικο. Είναι βαρύ αλλά πεντανόστιμο!'"
+          },
+          {
+            "days": [3],
+            "time": "16:00",
+            "category": "⛴️ Μεταφορές",
+            "name": "Ferry για τις Τρεις Πόλεις",
+            "distance": "Από Upper Barrakka Gardens",
+            "tip": "Η πρώτη κατοικία των Ιπποτών.",
+            "cost": "Δωρεάν (με κάρτα)",
+            "description": "🎙️ Tip Δούση:\n'Κατεβείτε με το τεράστιο Barrakka Lift στο λιμάνι και πάρτε το καραβάκι για Vittoriosa. Η διαδρομή διαρκεί 10 λεπτά και δίνει τις καλύτερες φωτογραφίες του Grand Harbour!'"
+          },
+          {
+            "days": [3],
+            "time": "21:00",
+            "category": "🍸 Ποτό",
+            "name": "Strait Street (Βαλέτα)",
+            "distance": "Κέντρο Βαλέτας",
+            "tip": "Η παλιά κακόφημη γειτονιά είναι τώρα το hot spot.",
+            "cost": "~12€",
+            "description": "📖 Ιστορία:\nΗ 'The Gut' ήταν γεμάτη πορνεία. Σήμερα φιλοξενεί τα καλύτερα bars.\n🎙️ Tip Δούση:\n'Πιάστε στασίδι στο Cafe Society, πάρτε ένα κοκτέιλ στο χέρι και αράξτε στα σκαλάκια. Ο ορισμός της χαλαρής μεσογειακής βραδιάς!'"
+          },
+
+          {
+            "days": [4],
+            "time": "09:30",
+            "category": "⛴️ Μεταφορές",
+            "name": "Gozo HighSpeed Ferry",
+            "distance": "Από Βαλέτα (Lascaris Wharf)",
+            "tip": "45 λεπτά απευθείας για Gozo.",
+            "cost": "Δωρεάν (με κάρτα)",
+            "description": "🎙️ Tip Δούση:\n'Ακούστε το μεγαλύτερο hack! Αντί να κάνετε 1 ώρα με το λεωφορείο για το βορρά (Cirkewwa), κατεβαίνετε στη Βαλέτα και παίρνετε το καταμαράν. Είναι πληρωμένο μέσα στην Explore κάρτα σας!'"
+          },
+          {
+            "days": [4],
+            "time": "11:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Η Ακρόπολη (Citadel) - Victoria",
+            "distance": "Bus 301 από λιμάνι Gozo",
+            "tip": "Το κάστρο στο κέντρο του νησιού.",
+            "cost": "Δωρεάν",
+            "description": "📖 Ιστορία:\nΤο 1551, οι Οθωμανοί την πολιόρκησαν και πήραν όλο τον πληθυσμό ως σκλάβους.\n🎙️ Tip Δούση:\n'Ανεβείτε στα ψηλότερα σημεία των τειχών. Από εκεί φαίνεται όλο το πράσινο νησί του Gozo. Εκπληκτική η διαφορά τοπίου με την ξερή Μάλτα!'"
+          },
+          {
+            "days": [4],
+            "time": "14:00",
+            "category": "🥪 Φαγητό",
+            "name": "Ta' Rikardu (Gozo)",
+            "distance": "Μέσα στην Ακρόπολη",
+            "tip": "Αγνά υλικά από τη δική τους φάρμα.",
+            "cost": "~25€",
+            "description": "🎙️ Tip Δούση:\n'Ο Rikardu έχει δικές του κατσίκες, δικά του αμπέλια. Παραγγείλτε την πιατέλα τυριών (Gbejniet) και τα ραβιόλια του με το δικό του σπιτικό κρασί. Αυτό σημαίνει farm to table!'"
+          },
+
+          {
+            "days": [5],
+            "time": "10:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Blue Grotto",
+            "distance": "Bus 74 (μέσω Βαλέτας)",
+            "tip": "Βαρκάδα στις γαλάζιες σπηλιές.",
+            "cost": "10€",
+            "description": "📖 Το μέρος:\nΈνα σύμπλεγμα θαλάσσιων σπηλαίων.\n🎙️ Tip Δούση:\n'Πηγαίνετε πρώτα στο Viewpoint για μια φωτογραφία από ψηλά, και μετά κατεβείτε στο λιμανάκι για τα παραδοσιακά βαρκάκια. Προσοχή, πάμε μόνο αν δεν φυσάει πολύ!'"
+          },
+          {
+            "days": [5],
+            "time": "14:00",
+            "category": "🥪 Φαγητό",
+            "name": "Marsaxlokk & Tartarun",
+            "distance": "Bus 119",
+            "tip": "Το παραδοσιακό ψαροχώρι.",
+            "cost": "~40€",
+            "description": "📖 Το μέρος:\nΤο χωριό είναι γεμάτο Luzzu, τις πολύχρωμες ξύλινες βάρκες.\n🎙️ Tip Δούση:\n'Εδώ ήρθαμε για ψάρι! Το Tartarun είναι το κορυφαίο εστιατόριο της περιοχής, ίσως λίγο πιο premium, αλλά το ψάρι σπαρταράει.'"
+          },
+
+          {
+            "days": [6],
+            "time": "11:00",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Sliema Promenade & Roman Baths",
+            "distance": "Ferry από Βαλέτα",
+            "tip": "Η κοσμοπολίτικη πλευρά της Μάλτας.",
+            "cost": "Δωρεάν",
+            "description": "🎙️ Tip Δούση:\n'Χαλαρή μέρα σήμερα! Περπατήστε τον παραλιακό δρόμο της Sliema. Κατεβείτε στα βράχια και δείτε τα Roman Baths, τετράγωνες φυσικές πισίνες λαξευμένες στην πέτρα.'"
+          },
+          {
+            "days": [6],
+            "time": "14:00",
+            "category": "🥪 Φαγητό",
+            "name": "Ta' Kris (Sliema)",
+            "distance": "Σε ένα στενάκι της Sliema",
+            "tip": "Παραδοσιακό φαγητό σε παλιό φούρνο.",
+            "cost": "~25€",
+            "description": "📖 Το μέρος:\nΣτεγάζεται σε ένα από τα παλαιότερα αρτοποιεία της περιοχής.\n🎙️ Tip Δούση:\n'Πρέπει να δοκιμάσετε το Bragioli! Μοσχαρίσια ρολά γεμιστά με κιμά και αυγό σε σάλτσα ντομάτας. Θα γλείφετε τα δάχτυλά σας!'"
+          },
+          {
+            "days": [6],
+            "time": "21:00",
+            "category": "🍸 Ποτό",
+            "name": "Hole in the Wall (Sliema)",
+            "distance": "Κοντά στο Ta' Kris",
+            "tip": "Το παλαιότερο μπαρ της περιοχής (1922).",
+            "cost": "~8€",
+            "description": "🎙️ Tip Δούση:\n'Για το τελευταίο σας βράδυ, αφήστε τα κυριλέ. Εδώ είναι το στέκι. Ατμόσφαιρα indie, craft μπύρες και χαλαρός κόσμος. Μια τρύπα στον τοίχο που κλείνει τέλεια το ταξίδι!'"
+          },
+
+          {
+            "days": [7],
+            "time": "05:40",
+            "category": "✈️ Μεταφορές",
+            "name": "Bolt / Uber προς Αεροδρόμιο",
+            "distance": "Από το Ξενοδοχείο",
+            "tip": "Η πτήση είναι 08:05.",
+            "cost": "~20€",
+            "description": "🎙️ Tip Δούση:\n'Φίλοι μου, η πτήση είναι πολύ νωρίς, ξεχάστε την Explore Card. Το X3 περνάει 05:25, κι αν αργήσει, θα ιδρώσετε. Κλείστε ένα Bolt από το προηγούμενο βράδυ, δώστε ένα 20ρικο και φτάστε κύριοι! Καλό ταξίδι!'"
+          }
+        ];
+
         let currentDisplayData = [];
         let currentDay = 0;
         let currentCat = 'all';
         let currentTextToSpeak = "";
         const synth = window.speechSynthesis;
 
-        fetch('locations.json')
-            .then(res => res.json())
-            .then(data => { allData = data; render(); })
-            .catch(err => console.error("Error:", err));
+        // Συνάρτηση για αφαίρεση τόνων (Accent Normalization)
+        const removeAccents = (str) => {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        };
+
+        render();
 
         function filterData(type, value) {
             if (type === 'day') {
@@ -125,12 +334,19 @@
             currentDisplayData = allData.filter(item => {
                 const dayMatch = currentDay === 0 || (item.days && item.days.includes(currentDay));
                 let catMatch = true;
-                if (currentCat !== 'all') catMatch = item.category.toLowerCase().includes(currentCat);
+                
+                if (currentCat !== 'all') {
+                    // Χρησιμοποιούμε την αφαίρεση τόνων για να ταιριάζουν τα φίλτρα άψογα!
+                    const itemCatClean = removeAccents(item.category);
+                    const searchCatClean = removeAccents(currentCat);
+                    catMatch = itemCatClean.includes(searchCatClean);
+                }
+                
                 return dayMatch && catMatch;
             });
 
             if (currentDisplayData.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:20px; color:#777;">Κενό Πρόγραμμα (Πτήση/Ύπνος) 😴</div>';
+                container.innerHTML = '<div style="text-align:center; padding:20px; color:#777;">Κενό Πρόγραμμα! Ώρα για χαλάρωση! 🍹</div>';
                 return;
             }
 
@@ -138,7 +354,7 @@
                 const distanceHtml = item.distance ? `<span class="distance-tag">👣 Από Βάση/Προηγούμενο: <b>${item.distance}</b></span>` : '';
 
                 const searchQuery = encodeURIComponent(item.name + " Malta");
-                const realMapUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+                const realMapUrl = `https://www.google.com/maps/search/?api=1&query=$${searchQuery}`;
 
                 container.innerHTML += `
                     <div class="card">
@@ -165,7 +381,6 @@
             document.getElementById('modalTitle').innerText = item.name;
             document.getElementById('modalBody').innerText = item.description || item.tip;
             
-            // Αφαίρεση emoji για καθαρή ανάγνωση
             currentTextToSpeak = (item.description || item.tip).replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
             
             document.getElementById('infoModal').style.display = 'flex';
@@ -199,6 +414,5 @@
             document.getElementById('stopBtn').style.display = isSpeaking ? 'inline-block' : 'none';
         }
     </script>
-
 </body>
 </html>
