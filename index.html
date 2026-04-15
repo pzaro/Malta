@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malta Travel Guide: 11-17 May 2026</title>
+    <style>
+        :root {
+            --primary: #d35400;
+            --secondary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+            --success: #27ae60;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: var(--bg); color: #333; margin: 0; padding: 15px; }
+        .container { max-width: 850px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        
+        h1 { color: var(--primary); text-align: center; border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
+        h2 { color: white; background: var(--secondary); padding: 10px; border-radius: 8px; margin-top: 25px; font-size: 1.2em; }
+        h3 { color: var(--primary); border-left: 4px solid var(--primary); padding-left: 10px; margin-top: 20px; }
+
+        .weather-box { background: var(--accent); color: white; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px; }
+        .weather-box a { color: white; font-weight: bold; text-decoration: underline; }
+
+        .folder { border: 2px dashed var(--secondary); padding: 15px; margin: 15px 0; border-radius: 10px; background: #fffdf9; }
+        .cost-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+        .cost-table th, .cost-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .cost-table th { background: #f2f2f2; }
+
+        .audio-btn { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.85em; transition: 0.3s; margin-top: 10px; }
+        .audio-btn:hover { opacity: 0.8; }
+
+        .bike-spot { display: block; background: #e8f5e9; color: var(--success); padding: 8px; border-radius: 5px; font-weight: bold; margin-top: 10px; border: 1px solid var(--success); }
+        .transport-info { font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px; border-left: 4px solid var(--accent); margin-top: 10px; }
+        
+        .nav-card { background: #fff; border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🇲🇹 Πρόγραμμα Μάλτας: 11 - 17 Μαΐου</h1>
+
+    <div class="weather-box">
+        <strong>🌤️ Δυναμική Πρόγνωση Καιρού</strong><br>
+        Ελέγξτε τις συνθήκες για το διάστημα 11-17 Μαΐου:<br>
+        <a href="https://www.maltairport.com/weather" target="_blank">Malta Met Office Official Site</a>
+    </div>
+
+    <div class="folder">
+        <h2>📂 Φάκελος: ΑΦΙΞΗ (11 Μαΐου)</h2>
+        <p id="arrival-txt">
+            <strong>14:20:</strong> Άφιξη στο MLA. <br>
+            <strong>Ενέργεια:</strong> Στην αίθουσα αφίξεων (Welcomers' Hall), βρείτε το αυτόματο μπλε μηχάνημα <strong>Tallinja</strong>. Αγοράστε την κάρτα <strong>Explore Plus Me (€33)</strong> για απεριόριστα λεωφορεία και Ferry.<br>
+            <strong>Μεταφορά:</strong> Λεωφορείο <strong>X3</strong> (Αναχώρηση ~15:15). Αποβίβαση στη στάση "Rotunda", 2 λεπτά από το Julina Boutique Living.
+        </p>
+        <button class="audio-btn" onclick="speak('arrival-txt')">🔊 Ακρόαση & Ιστορία</button>
+    </div>
+
+    <div class="nav-card">
+        <h3>12 Μαΐου: Mdina & Rabat</h3>
+        <p id="day2-txt">Επίσκεψη στην "Σιωπηλή Πόλη". Ιστορία: Η Mdina υπήρξε πρωτεύουσα από την αρχαιότητα μέχρι την άφιξη των Ιπποτών το 1530.</p>
+        <div class="transport-info">🚌 Λεωφορείο 202 ή 186 από Mosta (15 λεπτά).</div>
+        <span class="bike-spot">🚲 E-Bike: Nextbike Station - Rotunda Square</span>
+        <button class="audio-btn" onclick="speak('day2-txt')">🔊 Ακρόαση</button>
+    </div>
+
+    <div class="nav-card">
+        <h3>13 Μαΐου: Βαλέτα & Ferry για Sliema</h3>
+        <p id="day3-txt">Περιήγηση στη Βαλέτα (UNESCO). Μετά, χρησιμοποιήστε το Ferry για Sliema για βραδινή βόλτα και φαγητό.</p>
+        <div class="transport-info">🛳️ Ferry: Valletta Waterfront ➔ Sliema (Περιλαμβάνεται στην Explore Plus).</div>
+        <span class="bike-spot">🚲 E-Bike: Valletta City Gate</span>
+        <button class="audio-btn" onclick="speak('day3-txt')">🔊 Ακρόαση</button>
+    </div>
+
+    <div class="nav-card">
+        <h3>14 Μαΐου: Gozo (Ημέρα Ferry)</h3>
+        <p id="day4-txt">Χρησιμοποιήστε το <strong>Gozo Fast Ferry</strong> από το λιμάνι της Βαλέτας (Lascaris Wharf). Διαδρομή 45 λεπτά.</p>
+        <div class="transport-info">⛴️ Πλοίο: Gozo HighSpeed (2 διαδρομές δωρεάν με την Explore Plus).</div>
+        <span class="bike-spot">🚲 E-Bike: Mgarr Harbour Gozo</span>
+        <button class="audio-btn" onclick="speak('day4-txt')">🔊 Ακρόαση</button>
+    </div>
+
+    <div class="folder">
+        <h2>📂 Φάκελος: ΑΝΑΧΩΡΗΣΗ (17 Μαΐου)</h2>
+        <p id="departure-txt">
+            <strong>08:05:</strong> Πτήση αναχώρησης. <br>
+            <strong>⚠️ ΩΡΑ ΑΙΧΜΗΣ:</strong> Το πρώτο X3 περνά στις 05:25 από Mosta. Λόγω πρωινής ώρας, προτείνεται η χρήση <strong>Bolt/Uber</strong>. <br>
+            <strong>Κράτηση:</strong> Μέσω εφαρμογής στις 05:40. Άφιξη στο αεροδρόμιο ~06:05.
+        </p>
+        <button class="audio-btn" onclick="speak('departure-txt')">🔊 Ακρόαση Οδηγιών</button>
+    </div>
+
+    <h2>📊 Πραγματικό Οικονομικό Κόστος (2026)</h2>
+    <table class="cost-table">
+        <tr>
+            <th>Υπηρεσία</th>
+            <th>Κόστος</th>
+            <th>Πηγή</th>
+        </tr>
+        <tr>
+            <td>Explore Plus Me Card (7 days)</td>
+            <td>€33.00</td>
+            <td>Malta Public Transport</td>
+        </tr>
+        <tr>
+            <td>Γεύμα (Εστιατόριο - Main + Drink)</td>
+            <td>€22 - €35</td>
+            <td>Local Market Average</td>
+        </tr>
+        <tr>
+            <td>Bolt/Uber (Mosta ➔ Airport)</td>
+            <td>€18 - €22</td>
+            <td>Bolt App Estimate</td>
+        </tr>
+        <tr>
+            <td>Ηλεκτρικό Ποδήλατο (20 λεπτά)</td>
+            <td>~€3.00</td>
+            <td>Tallinja Bike Rates</td>
+        </tr>
+    </table>
+
+    <div style="text-align: center; margin-top: 30px; font-size: 0.8em; color: #888;">
+        &copy; 2026 World Travel Consultant - Malta Specialist
+    </div>
+</div>
+
+<script>
+    function speak(id) {
+        const text = document.getElementById(id).innerText;
+        const synth = window.speechSynthesis;
+        const utter = new SpeechSynthesisUtterance(text);
+        
+        // Ρυθμίσεις φωνής
+        utter.lang = 'el-GR';
+        utter.pitch = 1;
+        utter.rate = 0.9;
+        
+        // Σταμάτημα αν παίζει ήδη κάτι άλλο
+        synth.cancel();
+        synth.speak(utter);
+    }
+</script>
+
+</body>
+</html>
