@@ -71,6 +71,8 @@
                 <button class="btn-filter" onclick="filterData('cat', 'αξιοθέατα')">🏛️ Αξιοθέατα</button>
                 <button class="btn-filter" onclick="filterData('cat', 'φαγητό')">🥪 Φαγητό</button>
                 <button class="btn-filter" onclick="filterData('cat', 'ποτό')">🍸 Ποτό</button>
+                <button class="btn-filter" onclick="filterData('cat', 'διασκέδαση')">🎶 Διασκέδαση</button>
+                <button class="btn-filter" onclick="filterData('cat', 'παραλίες')">🌊 Παραλίες</button>
                 <button class="btn-filter" onclick="filterData('cat', 'μεταφορές')">🚌 Μεταφορές</button>
             </div>
         </div>
@@ -147,8 +149,8 @@
 
             currentDisplayData.forEach((item, index) => {
                 const distanceHtml = item.distance ? `<span class="distance-tag">👣 Από Βάση/Προηγούμενο: <b>${item.distance}</b></span>` : '';
-                const searchQuery = encodeURIComponent(item.name + " Malta");
-                const realMapUrl = `https://www.google.com/maps/search/?api=1&query=Dal+Moro's+Fresh+Pasta+to+Go+Venice3${searchQuery}`;
+                const searchQuery = encodeURIComponent((item.mapQuery || item.name) + " Malta");
+                const realMapUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
 
                 container.innerHTML += `
                     <div class="card">
