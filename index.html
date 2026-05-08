@@ -1,417 +1,219 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Μάλτα: Dousis Ultimate Guide</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fdf6e3; color: #2c3e50; margin: 0; padding-bottom: 60px; }
-        
-        .header { background: #fff; position: sticky; top: 0; z-index: 900; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 10px 0; border-bottom: 3px solid #d4af37; }
-        h1 { text-align: center; color: #2c3e50; margin: 5px 0; font-size: 1.3rem; font-family: "Georgia", serif; }
-        
-        .filters-wrapper { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
-        .scroll-container { display: flex; overflow-x: auto; gap: 8px; padding: 0 15px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-        .scroll-container::-webkit-scrollbar { display: none; }
-        
-        .btn-filter { flex: 0 0 auto; padding: 8px 15px; border-radius: 20px; border: 1px solid #d4af37; background: #fff; font-size: 0.85rem; color: #555; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-        .btn-filter.active { background: #d4af37; color: white; border-color: #d4af37; }
-        .date-btn.active { background: #2c3e50; border-color: #2c3e50; }
-
-        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
-        .card { background: white; border-radius: 4px; padding: 15px; margin-bottom: 15px; border-left: 5px solid #d4af37; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
-        
-        .category-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #d4af37; letter-spacing: 1px; }
-        .name { font-size: 1.3rem; font-weight: 800; margin: 5px 0; color: #2c3e50; font-family: "Georgia", serif; }
-        
-        .distance-tag { font-size: 0.9rem; color: #555; display: block; margin-bottom: 5px; background: #eee; padding: 3px 8px; border-radius: 4px; width: fit-content; }
-        
-        .meta-info { display: flex; gap: 10px; margin-top: 8px; font-size: 0.9rem; }
-        .time-badge { background: #2c3e50; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
-        .cost-badge { background: #eafaf1; color: #27ae60; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
-        
-        .tip { background: #fcf3cf; color: #555; padding: 10px; border-radius: 4px; margin-top: 10px; font-style: italic; font-size: 0.95rem; border-left: 3px solid #f1c40f; }
-
-        .card-actions { display: flex; gap: 10px; margin-top: 15px; }
-        .action-btn { flex: 1; padding: 12px; border-radius: 4px; text-align: center; font-weight: bold; text-decoration: none; font-size: 0.9rem; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; }
-        .map-btn { background: white; color: #2c3e50; border: 1px solid #2c3e50; }
-        .info-btn { background: #2c3e50; color: white; display: flex; align-items: center; justify-content: center; gap: 5px; }
-
-        /* MODAL */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: flex-end; justify-content: center; }
-        .modal-content { background: white; width: 100%; max-width: 600px; border-radius: 15px 15px 0 0; padding: 25px; max-height: 85vh; overflow-y: auto; animation: slideUp 0.3s ease-out; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .modal-title { font-size: 1.4rem; font-weight: bold; color: #2c3e50; margin: 0; font-family: "Georgia", serif; }
-        .close-btn { background: none; border: none; font-size: 2rem; color: #888; cursor: pointer; }
-        .modal-body { font-size: 1.05rem; line-height: 1.6; color: #333; white-space: pre-line; }
-        .audio-controls { margin-top: 20px; display: flex; gap: 10px; border-top: 1px solid #eee; padding-top: 15px; }
-        .speak-btn { background: #d4af37; color: white; width: 100%; border-radius: 8px; padding: 12px; font-weight: bold; border: none;}
-        .stop-btn { background: #c0392b; color: white; display: none; width: 100%; border-radius: 8px; padding: 12px; font-weight: bold; border: none;}
-        
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malta Mediterranean Guide</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif; background: #fdf6e3; color: #2c3e50; margin: 0; padding-bottom: 60px; }
+    .header { background: #fff; position: sticky; top: 0; z-index: 900; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 10px 0; border-bottom: 3px solid #d4af37; }
+    h1 { text-align: center; color: #2c3e50; margin: 5px 0; font-size: 1.3rem; font-family: Georgia, serif; }
+    .sub { text-align: center; margin: 0 15px 10px; font-size: 0.9rem; color: #666; }
+    .filters-wrapper { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
+    .scroll-container { display: flex; overflow-x: auto; gap: 8px; padding: 0 15px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    .btn-filter { flex: 0 0 auto; padding: 8px 15px; border-radius: 20px; border: 1px solid #d4af37; background: #fff; font-size: 0.85rem; color: #555; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+    .btn-filter.active { background: #d4af37; color: white; border-color: #d4af37; }
+    .date-btn.active { background: #2c3e50; border-color: #2c3e50; }
+    .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+    .card { background: white; border-radius: 6px; padding: 15px; margin-bottom: 15px; border-left: 5px solid #d4af37; box-shadow: 0 3px 6px rgba(0,0,0,0.08); }
+    .category-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #d4af37; letter-spacing: 1px; }
+    .name { font-size: 1.25rem; font-weight: 800; margin: 5px 0; color: #2c3e50; font-family: Georgia, serif; }
+    .distance-tag { font-size: 0.9rem; color: #555; display: inline-block; margin-bottom: 5px; background: #eee; padding: 3px 8px; border-radius: 4px; }
+    .meta-info { display: flex; gap: 10px; margin-top: 8px; font-size: 0.9rem; flex-wrap: wrap; }
+    .time-badge { background: #2c3e50; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+    .cost-badge { background: #eafaf1; color: #27ae60; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+    .tip { background: #fcf3cf; color: #555; padding: 10px; border-radius: 4px; margin-top: 10px; font-style: italic; font-size: 0.95rem; border-left: 3px solid #f1c40f; }
+    .card-actions { display: flex; gap: 10px; margin-top: 15px; }
+    .action-btn { flex: 1; padding: 12px; border-radius: 4px; text-align: center; font-weight: bold; text-decoration: none; font-size: 0.9rem; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; }
+    .map-btn { background: white; color: #2c3e50; border: 1px solid #2c3e50; }
+    .info-btn { background: #2c3e50; color: white; display: flex; align-items: center; justify-content: center; gap: 5px; }
+    .empty { text-align:center; padding:20px; color:#777; }
+    .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:2000; align-items:flex-end; justify-content:center; }
+    .modal-content { background:white; width:100%; max-width:600px; border-radius:15px 15px 0 0; padding:25px; max-height:85vh; overflow-y:auto; animation:slideUp 0.3s ease-out; }
+    .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px; }
+    .modal-title { font-size:1.4rem; font-weight:bold; color:#2c3e50; margin:0; font-family:Georgia, serif; }
+    .close-btn { background:none; border:none; font-size:2rem; color:#888; cursor:pointer; }
+    .modal-body { font-size:1.05rem; line-height:1.6; color:#333; white-space:pre-line; }
+    .audio-controls { margin-top:20px; display:flex; gap:10px; border-top:1px solid #eee; padding-top:15px; }
+    .speak-btn { background:#d4af37; color:white; width:100%; border-radius:8px; padding:12px; font-weight:bold; border:none; }
+    .stop-btn { background:#c0392b; color:white; display:none; width:100%; border-radius:8px; padding:12px; font-weight:bold; border:none; }
+    @keyframes slideUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
+  </style>
 </head>
 <body>
-
-    <div class="header">
-        <h1>🇲🇹 Malta: Mediterranean Guide</h1>
-        <div class="filters-wrapper">
-            <div class="scroll-container">
-                <button class="btn-filter date-btn active" onclick="filterData('day', 0)">Όλα</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 1)">Δευ 11/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 2)">Τρί 12/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 3)">Τετ 13/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 4)">Πέμ 14/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 5)">Παρ 15/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 6)">Σάβ 16/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 7)">Κυρ 17/5</button>
-            </div>
-            <div class="scroll-container">
-                <button class="btn-filter active" onclick="filterData('cat', 'all')">Όλα</button>
-                <button class="btn-filter" onclick="filterData('cat', 'αξιοθέατα')">🏛️ Αξιοθέατα</button>
-                <button class="btn-filter" onclick="filterData('cat', 'φαγητό')">🥪 Φαγητό</button>
-                <button class="btn-filter" onclick="filterData('cat', 'ποτό')">🍸 Ποτό</button>
-                <button class="btn-filter" onclick="filterData('cat', 'μεταφορές')">⛴️ Μεταφορές</button>
-            </div>
-        </div>
+  <div class="header">
+    <h1>Malta Mediterranean Guide</h1>
+    <p class="sub">St. Julian’s base • beaches • food • entertainment • day trips</p>
+    <div class="filters-wrapper">
+      <div class="scroll-container" id="dayFilters"></div>
+      <div class="scroll-container" id="catFilters"></div>
     </div>
+  </div>
 
-    <div class="container" id="content"></div>
+  <div class="container" id="content"></div>
 
-    <div id="infoModal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 id="modalTitle" class="modal-title"></h2>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
-            <div id="modalBody" class="modal-body"></div>
-            <div class="audio-controls">
-                <button id="speakBtn" class="action-btn speak-btn" onclick="startSpeaking()">🔊 Ακρόαση Ξεναγού</button>
-                <button id="stopBtn" class="action-btn stop-btn" onclick="stopSpeaking()">⏹️ Σταμάτημα</button>
-            </div>
-        </div>
+  <div id="infoModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <button class="close-btn" onclick="closeModal()">×</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="audio-controls">
+        <button id="speakBtn" class="speak-btn" onclick="startSpeaking()">Speak</button>
+        <button id="stopBtn" class="stop-btn" onclick="stopSpeaking()">Stop</button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        const allData = [
-          {
-            "days": [1, 2, 3, 4, 5, 6, 7],
-            "time": "Ευέλικτο",
-            "category": "🏨 Η Βάση μου",
-            "name": "Julina Boutique Living",
-            "distance": "0' (Mosta)",
-            "tip": "Στην καρδιά του νησιού. Η Mosta δεν είναι τουριστική 'φούσκα', αλλά ζωντανή πόλη.",
-            "cost": "-",
-            "description": "Η βάση σου για το 7ήμερο! Το Julina Boutique Living συνδυάζει μαλτέζικη παράδοση με σύγχρονη αισθητική. Το μεγαλύτερο πλεονέκτημα της Mosta είναι η αυθεντικότητά της. Εδώ ζουν ντόπιοι, ψωνίζουν στις αγορές και πίνουν τον καφέ τους. \n\n📍 Στρατηγική Μετακινήσεων:\nΑκριβώς δίπλα σας βρίσκεται η κεντρική στάση 'Rotunda'. Από εδώ περνάει η γραμμή κορμός X3 που συνδέει το αεροδρόμιο, αλλά και οι γραμμές 41, 42, 48 που σας κατεβάζουν απευθείας στη Βαλέτα σαν βέλος."
-          },
-          {
-            "days": [1],
-            "time": "14:20",
-            "category": "✈️ Μεταφορές",
-            "name": "Αεροδρόμιο Μάλτας & Explore Card",
-            "distance": "Άφιξη",
-            "tip": "Κατευθυνθείτε στα μηχανήματα στις Αφίξεις για την Explore Card.",
-            "cost": "€21.00",
-            "description": "Μόλις προσγειωθείτε, βρείτε το αυτόματο μηχάνημα πώλησης εισιτηρίων της Tallinja. Η κάρτα Explore Card προσφέρει απεριόριστες διαδρομές με λεωφορείο για 7 ημέρες και κοστίζει €21 για τους ενήλικες. \n\n🎙️ Tip Δούση:\n'Φίλοι μου, εδώ παίζουμε έξυπνα. Με €21 έχετε για 7 ολόκληρες μέρες απεριόριστα λεωφορεία. Αγοράζετε την κάρτα, μπαίνετε στο X3 για Mosta και ξεκινάει το ταξίδι!'"
-          },
-          {
-            "days": [1],
-            "time": "16:30",
-            "category": "🏛️ Αξιοθέατα",
-            "name": "Mosta Rotunda (Ο Καθεδρικός)",
-            "distance": "2' περπάτημα από το ξενοδοχείο",
-            "tip": "Μια από τις πιο συγκλονιστικές ιστορίες του Β' Παγκοσμίου Πολέμου.",
-            "cost": "€5.00",
-            "description": "📖 Ιστορική Ανάλυση:\nΣτις 9 Απριλίου του 1942, ενώ 300 πιστοί περίμεναν για λειτουργία, μια γερμανική βόμβα τρύπησε τον τρούλο και έπεσε στο δάπεδο χωρίς να εκραγεί. Η γενική είσοδος κοστίζει €5 και περιλαμβάνει την πρόσβαση στο καταφύγιο του Β' Παγκοσμίου Πολέμου.\n\n🎙️ Tip Δούση:\n'Είναι το καμάρι της γειτονιάς σας! Μπείτε μέσα, σηκώστε το κεφάλι ψηλά στον τεράστιο τρούλο και νιώστε το δέος. Μετά, κατεβείτε στα καταφύγια για να δείτε πώς κρύβονταν οι κάτοικοι!'"
-          },
-          {
-            "days": [1],
-            "time": "20:00",
-            "category": "🥪 Φαγητό",
-            "name": "Ta' Marija (Mosta)",
-            "distance": "5' περπάτημα στα στενά",
-            "tip": "Ο ναός της 'Fenkata', της παραδοσιακής γιορτής του κουνελιού.",
-            "cost": "~€35.00",
-            "description": "📖 Γαστρονομική Ανάλυση:\nΤο εθνικό πιάτο της Μάλτας είναι το κουνέλι στιφάδο (Stuffat tal-Fenek). Οι τιμές για ένα πλήρες γεύμα με παραδοσιακό κουνέλι κυμαίνονται ρεαλιστικά γύρω στα €25-€35.\n\n🎙️ Tip Δούση:\n'Το πρώτο βράδυ δεν θέλω ταλαιπωρία. Το Ta' Marija λειτουργεί από το 1982 και είναι βραβευμένο ως το πιο αυθεντικό εστιατόριο του νησιού. Παραγγείλτε την παραδοσιακή Fenkata και συνοδέψτε τη με ένα δυνατό, ερυθρό Μαλτέζικο κρασί!'"
-          },
-          
-          {
-            "days": [2],
-            "time": "10:00",
-            "category": "🏛️ Αξιοθέατα",
-            "name": "Mdina (Η Σιωπηλή Πόλη)",
-            "distance": "15' με Bus 202 από Mosta",
-            "tip": "Περπατήστε στην πόλη των ευγενών.",
-            "cost": "Δωρεάν",
-            "description": "📖 Ιστορική Ανάλυση:\nΠριν χτιστεί η Βαλέτα, η Mdina ήταν η πρωτεύουσα. Γνωστή ως 'Citta Vecchia', είναι μια αριστοκρατική καστροπολιτεία χωρίς αυτοκίνητα.\n\n🎙️ Tip Δούση:\n'Μόλις περάσετε την πύλη, θα καταλάβετε γιατί λέγεται Σιωπηλή Πόλη. Κλείστε τον χάρτη στο κινητό, χαθείτε στα δαιδαλώδη στενάκια της και περπατήστε μέχρι την πλατεία Bastion στην άκρη των τειχών για θέα που κόβει την ανάσα!'"
-          },
-          {
-            "days": [2],
-            "time": "13:00",
-            "category": "🥪 Φαγητό",
-            "name": "Crystal Palace (Is-Serkin)",
-            "distance": "Έξω από τα τείχη, στο χωριό Rabat",
-            "tip": "Ο βασιλιάς του Μαλτέζικου Street Food.",
-            "cost": "~€2.00",
-            "description": "📖 Γαστρονομική Ανάλυση:\nΤα Pastizzi είναι η καρδιά της μαλτέζικης καθημερινότητας. Είναι ζύμη σφολιάτας γεμιστή είτε με ρικότα (irkotta) είτε με κρεμώδη πουρέ αρακά (pizelli).\n\n🎙️ Tip Δούση:\n'Ακούστε προσεκτικά! Μια τρύπα στον τοίχο είναι αυτό το μαγαζί, γεμάτο ντόπιους που συζητάνε φωναχτά. Πάρτε τρία-τέσσερα pastizzi στο χέρι και ένα ζεστό τσάι σε παραδοσιακό γυάλινο ποτήρι. Όλο αυτό θα σας κοστίσει ελάχιστα!'"
-          },
-          {
-            "days": [2],
-            "time": "18:00",
-            "category": "🍸 Ποτό",
-            "name": "Fontanella Tea Garden",
-            "distance": "Επιστροφή στα τείχη της Mdina",
-            "tip": "Το πιο διάσημο κέικ σοκολάτας με την καλύτερη θέα.",
-            "cost": "~€10.00",
-            "description": "📖 Τοποθεσία & Γεύση:\nΣκαρφαλωμένο πάνω στον προμαχώνα της Mdina, το Fontanella είναι θεσμός από το 1975. \n\n🎙️ Tip Δούση:\n'Όταν πέφτει ο ήλιος, η Μντίνα αδειάζει. Ζητήστε τραπέζι στην πάνω βεράντα. Είτε πάρετε το θρυλικό κέικ σοκολάτας, είτε ένα Aperol Spritz, η αίσθηση του να βλέπεις τον ήλιο να βάφει χρυσές τις πέτρες του νησιού είναι ανεκτίμητη!'"
-          },
+<script>
+const allData = [
+  { days: 1, time: "Flexible", category: "Entertainment", name: "Spinola Bay", distance: "Near hotel", tip: "Sunset walk, cafes, boats.", cost: "-", description: "Classic St. Julian's waterfront and one of the best first stops." },
+  { days: 1, time: "Flexible", category: "Entertainment", name: "Paceville", distance: "Near hotel", tip: "Bars, clubs, nightlife.", cost: "-", description: "Main nightlife district of St. Julian's." },
+  { days: 1, time: "Flexible", category: "Beaches", name: "St George's Bay", distance: "5 min walk", tip: "Easy swim and beach time.", cost: "-", description: "Closest beach to your hotel and a simple first-day option." },
+  { days: 1, time: "Evening", category: "Food", name: "Salumeria Gardens", distance: "St. Julian's", tip: "Pizza, beers, relaxed dinner.", cost: "15-25", description: "Good casual place for a meal near your base." },
 
-          {
-            "days": [3],
-            "time": "09:30",
-            "category": "🏛️ Αξιοθέατα",
-            "name": "Συν-Καθεδρικός του Αγίου Ιωάννη (Βαλέτα)",
-            "distance": "35' (με Bus 41/42/48 από Mosta)",
-            "tip": "Μην κρίνετε από την απλή πρόσοψη.",
-            "cost": "€15.00",
-            "description": "📖 Ιστορική Ανάλυση:\nΤο εσωτερικό είναι απόλυτο Μπαρόκ. Το δάπεδο αποτελείται από 400 περίτεχνους μαρμάρινους τάφους Ιπποτών. Η είσοδος ανέρχεται στα €15 για τους ενήλικες.\n\n🎙️ Tip Δούση:\n'Το μυαλό σας δεν μπορεί να συλλάβει τον πλούτο! Ο πραγματικός θησαυρός είναι στο Ορατόριο, όπου κρέμεται ο Αποκεφαλισμός του Ιωάννη του Βαπτιστή, το μεγαλύτερο έργο του Καραβάτζιο!'"
-          },
-          {
-            "days": [3],
-            "time": "13:30",
-            "category": "🥪 Φαγητό",
-            "name": "Nenu The Artisan Baker",
-            "distance": "Στα στενάκια της Βαλέτας",
-            "tip": "Ο ναός της παραδοσιακής Ftira.",
-            "cost": "~€20.00",
-            "description": "📖 Γαστρονομική Ανάλυση:\nΗ Ftira φτιάχνεται από σκληρό Μαλτέζικο προζύμι, κάτι που της δίνει μια απίστευτα τραγανή κρούστα αλλά αφράτο εσωτερικό.\n\n🎙️ Tip Δούση:\n'Στον Nenu, ζητήστε τη Ftira Ta' Karmni. Είναι φορτωμένη με φρέσκια ντομάτα, ντόπια κάπαρη, ελιές και πικάντικο μαλτέζικο λουκάνικο. Πάρτε μία στη μέση με μια παγωμένη τοπική μπύρα Cisk!'"
-          },
-          {
-            "days": [3],
-            "time": "16:00",
-            "category": "⛴️ Μεταφορές",
-            "name": "Ferry για τις Τρεις Πόλεις (3 Cities)",
-            "distance": "Από τους κήπους Upper Barrakka",
-            "tip": "Ταξιδέψτε στο παρελθόν των Ιπποτών.",
-            "cost": "€2.00",
-            "description": "📖 Τοποθεσία:\nΟι Τρεις Πόλεις (Vittoriosa, Senglea, Cospicua) είναι παλαιότερες από τη Βαλέτα. Το καραβάκι κοστίζει €2.00 για απλή μετάβαση.\n\n🎙️ Tip Δούση:\n'Κατεβείτε με το τεράστιο ασανσέρ (Barrakka Lift) στο επίπεδο της θάλασσας και περάστε απέναντι στις 3 Πόλεις. Εκεί θα περπατήσετε στη Vittoriosa χωρίς ορδές τουριστών!'"
-          },
-          {
-            "days": [3],
-            "time": "21:00",
-            "category": "🍸 Ποτό",
-            "name": "Strait Street (Το παλιό 'Gut')",
-            "distance": "Καρδιά της Βαλέτας",
-            "tip": "Η οδός της αμαρτίας που μεταμορφώθηκε σε hot spot.",
-            "cost": "~€12.00",
-            "description": "📖 Ιστορική Ανάλυση:\nΣτο παρελθόν, η Strait Street ήταν το κέντρο της πορνείας, των ναυτών και της τζαζ. Σήμερα έχει ανακαινιστεί πλήρως διατηρώντας τα vintage στοιχεία της.\n\n🎙️ Tip Δούση:\n'Όλη η ενέργεια της νυχτερινής Βαλέτας είναι εδώ! Πιάστε ένα τραπεζάκι στο Cafe Society, πάρτε ένα κορυφαίο signature cocktail, αράξτε στα σκαλάκια και αφήστε τις μουσικές να σας παρασύρουν!'"
-          },
+  { days: 2, time: "Morning", category: "Views", name: "Valletta", distance: "Bus/Ferry", tip: "UNESCO capital, walk the old streets.", cost: "-", description: "Historic capital of Malta with strong views and architecture." },
+  { days: 2, time: "Lunch", category: "Food", name: "Pastizzi Stop", distance: "Valletta or Rabat", tip: "Try ricotta and pea pastries.", cost: "2-5", description: "Classic Maltese street food." },
+  { days: 2, time: "Afternoon", category: "Entertainment", name: "Upper Barrakka Gardens", distance: "Valletta", tip: "Great harbor panorama.", cost: "-", description: "Perfect for a short scenic stop." },
 
-          {
-            "days": [4],
-            "time": "09:30",
-            "category": "⛴️ Μεταφορές",
-            "name": "Gozo HighSpeed Ferry",
-            "distance": "Από Βαλέτα (Lascaris Wharf)",
-            "tip": "Ο πιο γρήγορος τρόπος να φτάσετε στο Gozo.",
-            "cost": "€7.00",
-            "description": "📖 Ανάλυση διαδρομής:\nΤο γρήγορο πλοίο από τη Βαλέτα προς το Gozo κοστίζει €7.00 για απλή μετάβαση. Η διαδρομή διαρκεί 45 λεπτά διασχίζοντας την ακτογραμμή.\n\n🎙️ Tip Δούση:\n'Ακούστε το μεγαλύτερο ταξιδιωτικό hack! Αντί να ταλαιπωρηθείτε 1 ώρα με το λεωφορείο για το βορρά, παίρνετε το καταμαράν από το κέντρο της Βαλέτας και φτάνετε στο Gozo γρήγορα και ξεκούραστα!'"
-          },
-          {
-            "days": [4],
-            "time": "11:30",
-            "category": "🏛️ Αξιοθέατα",
-            "name": "Η Ακρόπολη (Citadel) - Victoria, Gozo",
-            "distance": "Bus 301 από λιμάνι Gozo",
-            "tip": "Ένα αρχιτεκτονικό διαμάντι στην κορυφή του λόφου.",
-            "cost": "Δωρεάν",
-            "description": "📖 Ιστορική Ανάλυση:\nΚατοικείται από την Εποχή του Χαλκού. Το 1551 οι Οθωμανοί την πολιόρκησαν και πήραν και τους 6.000 κατοίκους του νησιού ως σκλάβους.\n\n🎙️ Tip Δούση:\n'Πριν χαθείτε στα σοκάκια, περπατήστε περιμετρικά πάνω στα ογκώδη τείχη. Επειδή το Gozo είναι πολύ πιο αγροτικό και πράσινο από τη Μάλτα, η θέα από ψηλά είναι ποίηση!'"
-          },
-          {
-            "days": [4],
-            "time": "14:00",
-            "category": "🥪 Φαγητό",
-            "name": "Ta' Rikardu (Gozo)",
-            "distance": "Μέσα στα σοκάκια της Ακρόπολης",
-            "tip": "Η πραγματική έννοια του 'Farm to Table'.",
-            "cost": "~€25.00",
-            "description": "📖 Γαστρονομική Ανάλυση:\nΤο Gozo φημίζεται για το ġbejna, ένα μικρό στρογγυλό τυρί από πρόβειο ή κατσικίσιο γάλα. Ο Rikardu παράγει μόνος του ό,τι σερβίρει.\n\n🎙️ Tip Δούση:\n'Φίλοι μου, εδώ υποκλινόμαστε στην παράδοση. Ο Rikardu έχει δικές του κατσίκες. Παραγγείλτε την πιατέλα με τα ντόπια τυριά, τα χειροποίητα ραβιόλια του και το δικό του σπιτικό κρασί!'"
-          },
+  { days: 3, time: "Morning", category: "Beaches", name: "Golden Bay", distance: "Northwest Malta", tip: "Big sandy beach.", cost: "-", description: "One of Malta's most famous beaches." },
+  { days: 3, time: "Afternoon", category: "Beaches", name: "Għajn Tuffieħa", distance: "Near Golden Bay", tip: "More scenic and quieter.", cost: "-", description: "Dramatic scenery and a great sunset beach." },
+  { days: 3, time: "Lunch", category: "Food", name: "Fish lunch near Mellieħa", distance: "North Malta", tip: "Seafood and local dishes.", cost: "20-35", description: "Good day-trip lunch option by the coast." },
 
-          {
-            "days": [5],
-            "time": "10:30",
-            "category": "🏛️ Αξιοθέατα",
-            "name": "Blue Grotto (Γαλάζιο Σπήλαιο)",
-            "distance": "Bus 74 (αναχώρηση από Βαλέτα)",
-            "tip": "Εκτυφλωτικά γαλάζια νερά.",
-            "cost": "~€10.00",
-            "description": "📖 Τοποθεσία & Φαινόμενο:\nΟ ήλιος (ειδικά το πρωί) αντανακλάται στη λευκή άμμο του βυθού, δημιουργώντας φωσφορίζοντα γαλάζια χρώματα μέσα στο σπήλαιο.\n\n🎙️ Tip Δούση:\n'Πηγαίνετε πρώτα στην εξέδρα για να βγάλετε την πανοραμική φωτογραφία με τη φυσική αψίδα. Μετά, κατηφορίστε στο λιμανάκι και μπείτε στα βαρκάκια. Κοστίζει περίπου ένα δεκάρικο και αξίζει 100%!'"
-          },
-          {
-            "days": [5],
-            "time": "14:00",
-            "category": "🥪 Φαγητό",
-            "name": "Marsaxlokk & Εστιατόριο Tartarun",
-            "distance": "Bus 119",
-            "tip": "Το πιο φωτογραφημένο ψαροχώρι.",
-            "cost": "~€40.00",
-            "description": "📖 Πολιτιστική & Γαστρονομική Ανάλυση:\nΤο λιμάνι είναι γεμάτο Luzzu, παραδοσιακές ξύλινες βάρκες που έχουν ζωγραφισμένο το Μάτι του Όσιρι.\n\n🎙️ Tip Δούση:\n'Εδώ ήρθαμε για ψάρι! Το Tartarun είναι βραβευμένο, ίσως λίγο πιο premium στην τιμή, αλλά το ψάρι του σπαρταράει. Αν θέλετε κάτι πιο χαλαρό, καθίστε δίπλα στο La Nostra Padrona!'"
-          },
+  { days: 4, time: "Morning", category: "Views", name: "Mdina", distance: "Bus 202/202B", tip: "Silent City, best early.", cost: "-", description: "Top historic inland visit in Malta." },
+  { days: 4, time: "Lunch", category: "Food", name: "Fontanella Tea Garden", distance: "Mdina", tip: "Cake with panorama.", cost: "8-15", description: "Very popular for views and desserts." },
+  { days: 4, time: "Afternoon", category: "Entertainment", name: "Crystal Palace Is-Serkin", distance: "Rabat", tip: "Pastizzi stop.", cost: "2-5", description: "Simple and famous local snack stop." },
 
-          {
-            "days": [6],
-            "time": "11:00",
-            "category": "🏛️ Αξιοθέατα",
-            "name": "Sliema Promenade & Roman Baths",
-            "distance": "Ferry από Βαλέτα",
-            "tip": "Η κοσμοπολίτικη όψη της Μάλτας.",
-            "cost": "€1.50",
-            "description": "📖 Τοποθεσία:\nΤο καραβάκι από τη Βαλέτα για τη Sliema αποτελεί γρήγορη και φθηνή μεταφορά, καθώς το εισιτήριο κοστίζει €1.50.\n\n🎙️ Tip Δούση:\n'Περπατήστε τον τεράστιο πεζόδρομο έχοντας τη θάλασσα δίπλα σας. Κατεβείτε στα λαξευμένα βράχια. Τα Roman Baths είναι το ιδανικό σημείο για μια γρήγορη βουτιά σαν ντόπιοι!'"
-          },
-          {
-            "days": [6],
-            "time": "14:00",
-            "category": "🥪 Φαγητό",
-            "name": "Ta' Kris (Sliema)",
-            "distance": "Κρυμμένο σε αδιέξοδο της Sliema",
-            "tip": "Το καλύτερο παραδοσιακό φαγητό.",
-            "cost": "~€25.00",
-            "description": "📖 Γαστρονομική Ανάλυση:\nΣτεγάζεται σε ένα από τα παλαιότερα αρτοποιεία της περιοχής. Στο κέντρο του εστιατορίου δεσπόζει ακόμα ο τεράστιος παλιός φούρνος.\n\n🎙️ Tip Δούση:\n'Είναι κρυμμένο σε ένα στενάκι. Πρέπει να δοκιμάσετε το Bragioli! Φέτες μοσχαριού γεμιστές με κιμά, σκόρδο και μυρωδικά, που σιγοβράζουν σε σάλτσα ντομάτας!'"
-          },
-          {
-            "days": [6],
-            "time": "21:00",
-            "category": "🍸 Ποτό",
-            "name": "Hole in the Wall (Sliema)",
-            "distance": "Δύο λεπτά από το Ta' Kris",
-            "tip": "Το παλαιότερο μπαρ της Sliema (1922).",
-            "cost": "~€8.00",
-            "description": "📖 Ιστορική Ανάλυση:\nΞεκίνησε ως μια 'τρύπα στον τοίχο' το 1922, όπου οι ντόπιοι έφερναν άδεια μπουκάλια για να τα γεμίσουν με κρασί.\n\n🎙️ Tip Δούση:\n'Για το τελευταίο σας βράδυ, αφήστε τα κυριλέ. Εδώ είναι το στέκι της καρδιάς μας. Ατμόσφαιρα indie, ψαγμένες craft μπύρες και μια ιστορική τρύπα στον τοίχο που θα κλείσει τέλεια το ταξίδι σας!'"
-          },
+  { days: 5, time: "Morning", category: "Views", name: "Blue Grotto", distance: "South Malta", tip: "Boat if sea is calm.", cost: "-", description: "Famous sea caves and blue water views." },
+  { days: 5, time: "Afternoon", category: "Food", name: "Marsaxlokk", distance: "Bus 119", tip: "Seafood and harbor walk.", cost: "-", description: "Great for fish lunch and harbor photos." },
+  { days: 5, time: "Evening", category: "Entertainment", name: "Strait Street", distance: "Valletta", tip: "Bars and cocktails.", cost: "10-15", description: "One of the best evening areas in Valletta." },
 
-          {
-            "days": [7],
-            "time": "05:40",
-            "category": "✈️ Μεταφορές",
-            "name": "Bolt / Uber προς Αεροδρόμιο",
-            "distance": "Αναχώρηση από Mosta",
-            "tip": "Η πτήση της επιστροφής είναι στις 08:05.",
-            "cost": "~€18.00",
-            "description": "📖 Πρακτική Ανάλυση:\nΟι τιμές για μετακινήσεις με ταξί όπως η Bolt από το αεροδρόμιο προς κεντρικές περιοχές κυμαίνονται μεταξύ €15 και €20.\n\n🎙️ Tip Δούση:\n'Φίλοι μου, δεν ρισκάρουμε να χάσουμε την πτήση με το λεωφορείο X3 τα χαράματα! Κλείστε ένα Bolt από το προηγούμενο βράδυ, μπείτε στο αμάξι και φτάστε στο αεροδρόμιο κύριοι. Καλό και ασφαλές ταξίδι!'"
-          }
-        ];
+  { days: 6, time: "Morning", category: "Entertainment", name: "Gozo Day Trip", distance: "Ferry", tip: "Best full-day excursion.", cost: "-", description: "Island trip with villages and viewpoints." },
+  { days: 6, time: "Afternoon", category: "Beaches", name: "Ramla Bay", distance: "Gozo", tip: "Red sand beach.", cost: "-", description: "One of Gozo's most beautiful beaches." },
+  { days: 6, time: "Lunch", category: "Food", name: "Ta Rikardu", distance: "Victoria, Gozo", tip: "Gbejniet and local food.", cost: "20-30", description: "Traditional Gozo food experience." },
 
-        let currentDisplayData = [];
-        let currentDay = 0;
-        let currentCat = 'all';
-        let currentTextToSpeak = "";
-        const synth = window.speechSynthesis;
+  { days: 7, time: "Flexible", category: "Food", name: "Ta' Marija", distance: "Mosta", tip: "Traditional Maltese dinner.", cost: "25-40", description: "Very good for authentic Maltese food." },
+  { days: 7, time: "Flexible", category: "Entertainment", name: "Dragonara Casino", distance: "St. Julian's", tip: "Evening option near hotel.", cost: "-", description: "Close entertainment choice in your base area." },
+  { days: 7, time: "Flexible", category: "Entertainment", name: "Portomaso Marina", distance: "St. Julian's", tip: "Luxury walk and views.", cost: "-", description: "Nice for a calm walk, coffee, or marina photos." }
+];
 
-        const removeAccents = (str) => {
-            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-        };
+const days = ["All Days", "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"];
+const cats = ["All", "Entertainment", "Beaches", "Food", "Views"];
 
-        render();
+let currentDay = 0;
+let currentCat = "All";
+let currentDisplayData = [];
+let currentTextToSpeak = "";
+const synth = window.speechSynthesis;
 
-        function filterData(type, value) {
-            if (type === 'day') {
-                currentDay = value;
-                document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
-            } else {
-                currentCat = value;
-                document.querySelectorAll('.btn-filter:not(.date-btn)').forEach(b => b.classList.remove('active'));
-            }
-            event.target.classList.add('active');
-            render();
-        }
+function removeAccents(str) {
+  return (str || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
 
-        function render() {
-            const container = document.getElementById('content');
-            container.innerHTML = '';
+function renderFilters() {
+  const dayWrap = document.getElementById("dayFilters");
+  const catWrap = document.getElementById("catFilters");
 
-            currentDisplayData = allData.filter(item => {
-                const dayMatch = currentDay === 0 || (item.days && item.days.includes(currentDay));
-                let catMatch = true;
-                
-                if (currentCat !== 'all') {
-                    const itemCatClean = removeAccents(item.category);
-                    const searchCatClean = removeAccents(currentCat);
-                    catMatch = itemCatClean.includes(searchCatClean);
-                }
-                
-                return dayMatch && catMatch;
-            });
+  dayWrap.innerHTML = days.map((d, i) =>
+    `<button class="btn-filter date-btn ${i === 0 ? "active" : ""}" onclick="filterData('day', ${i})">${d}</button>`
+  ).join("");
 
-            if (currentDisplayData.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:20px; color:#777;">Κενό Πρόγραμμα! Ώρα για χαλάρωση! 🍹</div>';
-                return;
-            }
+  catWrap.innerHTML = cats.map((c, i) =>
+    `<button class="btn-filter ${i === 0 ? "active" : ""}" onclick="filterData('cat', '${c}')">${c}</button>`
+  ).join("");
+}
 
-            currentDisplayData.forEach((item, index) => {
-                const distanceHtml = item.distance ? `<span class="distance-tag">👣 Από Βάση/Προηγούμενο: <b>${item.distance}</b></span>` : '';
-                const searchQuery = encodeURIComponent(item.name + " Malta");
-                const realMapUrl = `https://www.google.com/maps/search/?api=1&query=Dal+Moro's+Fresh+Pasta+to+Go+Venice3{searchQuery}`;
+function filterData(type, value) {
+  if (type === "day") {
+    currentDay = value;
+    document.querySelectorAll(".date-btn").forEach(b => b.classList.remove("active"));
+    event.target.classList.add("active");
+  } else {
+    currentCat = value;
+    document.querySelectorAll(".btn-filter").forEach(b => {
+      if (!b.classList.contains("date-btn")) b.classList.remove("active");
+    });
+    event.target.classList.add("active");
+  }
+  render();
+}
 
-                container.innerHTML += `
-                    <div class="card">
-                        <div class="category-tag">${item.category}</div>
-                        <div class="name">${item.name}</div>
-                        ${distanceHtml}
-                        <div class="meta-info">
-                            <span class="time-badge">🕒 ${item.time || '-'}</span>
-                            <span class="cost-badge">💰 ${item.cost}</span>
-                        </div>
-                        <div class="tip">💡 ${item.tip}</div>
-                        <div class="card-actions">
-                            <button class="action-btn info-btn" onclick="openModal(${index})">ℹ️ Πλήρης Ανάλυση</button>
-                            <a href="${realMapUrl}" target="_blank" class="action-btn map-btn">📍 Χάρτης</a>
-                        </div>
-                    </div>
-                `;
-            });
-        }
+function getMapUrl(name) {
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(name + " Malta");
+}
 
-        function openModal(index) {
-            const item = currentDisplayData[index];
-            if (!item) return;
-            document.getElementById('modalTitle').innerText = item.name;
-            document.getElementById('modalBody').innerText = item.description || item.tip;
-            
-            // Αφαίρεση παραπομπών (cite:) και emojis για πιο καθαρή φωνητική ανάγνωση
-            let cleanText = (item.description || item.tip).replace(/\]+\]/g, '');
-            currentTextToSpeak = cleanText.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
-            
-            document.getElementById('infoModal').style.display = 'flex';
-            stopSpeaking();
-        }
+function render() {
+  const container = document.getElementById("content");
+  currentDisplayData = allData.filter(item => {
+    const dayMatch = currentDay === 0 || item.days === currentDay;
+    const catMatch = currentCat === "All" || removeAccents(item.category).includes(removeAccents(currentCat));
+    return dayMatch && catMatch;
+  });
 
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
-            stopSpeaking();
-        }
+  if (currentDisplayData.length === 0) {
+    container.innerHTML = `<div class="empty">No items found.</div>`;
+    return;
+  }
 
-        function startSpeaking() {
-            if (synth.speaking) return;
-            if (currentTextToSpeak) {
-                const utterThis = new SpeechSynthesisUtterance(currentTextToSpeak);
-                utterThis.lang = 'el-GR';
-                utterThis.rate = 0.95;
-                utterThis.onend = () => toggleAudioButtons(false);
-                synth.speak(utterThis);
-                toggleAudioButtons(true);
-            }
-        }
+  container.innerHTML = currentDisplayData.map((item, index) => `
+    <div class="card">
+      <div class="category-tag">${item.category}</div>
+      <div class="name">${item.name}</div>
+      <div class="distance-tag">${item.distance || ""}</div>
+      <div class="meta-info">
+        <span class="time-badge">${item.time}</span>
+        <span class="cost-badge">${item.cost}</span>
+      </div>
+      <div class="tip">${item.tip}</div>
+      <div class="card-actions">
+        <button class="action-btn info-btn" onclick="openModal(${index})">Info</button>
+        <a class="action-btn map-btn" href="${getMapUrl(item.name)}" target="_blank">Map</a>
+      </div>
+    </div>
+  `).join("");
+}
 
-        function stopSpeaking() {
-            if (synth.speaking) synth.cancel();
-            toggleAudioButtons(false);
-        }
+function openModal(index) {
+  const item = currentDisplayData[index];
+  if (!item) return;
+  document.getElementById("modalTitle").innerText = item.name;
+  document.getElementById("modalBody").innerText = item.description + "\n\nTip: " + item.tip;
+  currentTextToSpeak = (item.description + " " + item.tip).replace(/[^\w\s\u0370-\u03FF\u1F00-\u1FFF]/g, "");
+  document.getElementById("infoModal").style.display = "flex";
+  stopSpeaking();
+}
 
-        function toggleAudioButtons(isSpeaking) {
-            document.getElementById('speakBtn').style.display = isSpeaking ? 'none' : 'block';
-            document.getElementById('stopBtn').style.display = isSpeaking ? 'block' : 'none';
-        }
-    </script>
+function closeModal() {
+  document.getElementById("infoModal").style.display = "none";
+  stopSpeaking();
+}
+
+function toggleAudioButtons(isSpeaking) {
+  document.getElementById("speakBtn").style.display = isSpeaking ? "none" : "block";
+  document.getElementById("stopBtn").style.display = isSpeaking ? "block" : "none";
+}
+
+function startSpeaking() {
+  if (synth.speaking) return;
+  if (currentTextToSpeak) {
+    const utterThis = new SpeechSynthesisUtterance(currentTextToSpeak);
+    utterThis.lang = "el-GR";
+    utterThis.rate = 0.95;
+    utterThis.onend = () => toggleAudioButtons(false);
+    synth.speak(utterThis);
+    toggleAudioButtons(true);
+  }
+}
+
+function stopSpeaking() {
+  if (synth.speaking) synth.cancel();
+  toggleAudioButtons(false);
+}
+
+renderFilters();
+render();
+</script>
 </body>
 </html>
