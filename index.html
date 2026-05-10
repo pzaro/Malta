@@ -49,12 +49,146 @@
         .stop-btn { background: #c0392b; color: white; display: none; width: 100%; border-radius: 8px; padding: 12px; font-weight: bold; border: none; cursor: pointer;}
         
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        /* ── WEATHER WIDGET ── */
+        .weather-bar {
+            background: linear-gradient(135deg, #1a6fa8 0%, #0e4d7a 100%);
+            color: white;
+            padding: 0;
+            margin: 6px 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .weather-current {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .weather-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .weather-icon { font-size: 1.6rem; line-height: 1; }
+        .weather-temp {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .weather-desc {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            line-height: 1.2;
+        }
+        .weather-mid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.72rem;
+            opacity: 0.85;
+            gap: 2px;
+        }
+        .weather-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .weather-refresh {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .weather-refresh:hover { background: rgba(255,255,255,0.3); }
+        .weather-refresh.spinning { animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .weather-toggle {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            transition: transform 0.3s;
+        }
+        .weather-toggle.open { transform: rotate(180deg); }
+
+        .weather-forecast {
+            display: none;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 13px 10px;
+        }
+        .weather-forecast.open { display: block; }
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+        .forecast-day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 5px 3px;
+            border-radius: 7px;
+            background: rgba(255,255,255,0.08);
+            font-size: 0.68rem;
+        }
+        .forecast-day.today {
+            background: rgba(255,255,255,0.22);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.35);
+        }
+        .forecast-dayname { font-weight: 700; font-size: 0.62rem; opacity: 0.9; }
+        .forecast-date { opacity: 0.65; font-size: 0.6rem; }
+        .forecast-icon { font-size: 1.1rem; margin: 2px 0; }
+        .forecast-max { font-weight: 800; font-size: 0.75rem; }
+        .forecast-min { opacity: 0.65; font-size: 0.62rem; }
+        .forecast-rain { font-size: 0.6rem; opacity: 0.75; }
+        .weather-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            font-size: 0.6rem;
+            opacity: 0.55;
+            padding: 0 1px;
+        }
+        .weather-error {
+            padding: 10px 13px;
+            font-size: 0.8rem;
+            opacity: 0.75;
+            text-align: center;
+        }
+        .weather-loading {
+            padding: 10px 13px;
+            font-size: 0.78rem;
+            opacity: 0.75;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>🇲🇹 Malta 2026: Dousis Guide</h1>
+
+        <!-- WEATHER WIDGET -->
+        <div class="weather-bar" id="weatherBar">
+            <div class="weather-loading" id="weatherLoading">
+                <span>⏳</span> Φόρτωση καιρού St. Julian's…
+            </div>
+        </div>
+
         <div class="filters-wrapper">
             <div class="scroll-container">
                 <button class="btn-filter date-btn active" onclick="filterData('day', 0)">Όλα</button>
@@ -211,6 +345,187 @@
             document.getElementById('speakBtn').style.display = isSpeaking ? 'none' : 'block';
             document.getElementById('stopBtn').style.display = isSpeaking ? 'block' : 'none';
         }
+        /* ════════════════════════════════════════
+           WEATHER — Open-Meteo API (no key needed)
+           St. Julian's, Malta: 35.9172, 14.4889
+           Refresh: κάθε 30 λεπτά
+           ════════════════════════════════════════ */
+
+        const WEATHER_LAT   = 35.9172;
+        const WEATHER_LON   = 14.4889;
+        const REFRESH_MS    = 30 * 60 * 1000; // 30 λεπτά
+
+        // Ημέρες ταξιδιού: 11–17 Μαΐου 2026
+        const TRIP_START    = new Date('2026-05-11');
+        const TRIP_END      = new Date('2026-05-17');
+
+        const WMO = {
+            0:  ['☀️','Καθαρός'],
+            1:  ['🌤️','Κυρίως αίθριος'],
+            2:  ['⛅','Μερική συννεφιά'],
+            3:  ['☁️','Συννεφιά'],
+            45: ['🌫️','Ομίχλη'],
+            48: ['🌫️','Ομίχλη'],
+            51: ['🌦️','Ψιλόβροχο'],
+            53: ['🌦️','Ψιλόβροχο'],
+            55: ['🌦️','Ψιλόβροχο'],
+            61: ['🌧️','Βροχή'],
+            63: ['🌧️','Βροχή'],
+            65: ['🌧️','Έντονη βροχή'],
+            71: ['🌨️','Χιόνι'],
+            73: ['🌨️','Χιόνι'],
+            75: ['🌨️','Χιονόπτωση'],
+            77: ['🌨️','Χαλάζι'],
+            80: ['🌧️','Ντους βροχής'],
+            81: ['🌧️','Ντους βροχής'],
+            82: ['⛈️','Καταρρακτώδης'],
+            85: ['🌨️','Χιονόπτωση'],
+            86: ['🌨️','Χιονόπτωση'],
+            95: ['⛈️','Καταιγίδα'],
+            96: ['⛈️','Καταιγίδα+χαλ.'],
+            99: ['⛈️','Καταιγίδα+χαλ.']
+        };
+
+        const DAYS_GR = ['Κυρ','Δευ','Τρί','Τετ','Πέμ','Παρ','Σάβ'];
+        const MONTHS_GR = ['Ιαν','Φεβ','Μαρ','Απρ','Μαϊ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'];
+
+        let weatherOpen = false;
+        let refreshTimer = null;
+
+        function wmo(code) {
+            return WMO[code] || WMO[Math.floor(code / 10) * 10] || ['🌡️','Άγνωστο'];
+        }
+
+        function fmtTime(d) {
+            return d.toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function isTripDay(dateStr) {
+            const d = new Date(dateStr);
+            return d >= TRIP_START && d <= TRIP_END;
+        }
+
+        function tripDayLabel(dateStr) {
+            // Returns "Κυρ 11/5" style label
+            const d = new Date(dateStr + 'T12:00:00');
+            return `${DAYS_GR[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;
+        }
+
+        async function fetchWeather() {
+            const btn = document.getElementById('weatherRefreshBtn');
+            if (btn) btn.classList.add('spinning');
+
+            const url = `https://api.open-meteo.com/v1/forecast`
+                + `?latitude=${WEATHER_LAT}&longitude=${WEATHER_LON}`
+                + `&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m`
+                + `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max`
+                + `&timezone=Europe%2FMalta`
+                + `&forecast_days=14`
+                + `&wind_speed_unit=kmh`;
+
+            try {
+                const res  = await fetch(url);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                renderWeather(data);
+            } catch (e) {
+                document.getElementById('weatherBar').innerHTML =
+                    `<div class="weather-current" style="cursor:default">
+                        <div class="weather-left">
+                            <span class="weather-icon">⚠️</span>
+                            <div>
+                                <div style="font-size:0.82rem;font-weight:700">Σφάλμα φόρτωσης καιρού</div>
+                                <div style="font-size:0.7rem;opacity:0.7">Έλεγξε σύνδεση internet</div>
+                            </div>
+                        </div>
+                        <button class="weather-refresh" onclick="fetchWeather()" title="Ανανέωση">🔄</button>
+                     </div>`;
+            } finally {
+                const b = document.getElementById('weatherRefreshBtn');
+                if (b) b.classList.remove('spinning');
+            }
+        }
+
+        function windDir(deg) {
+            const dirs = ['Β','ΒΑ','Α','ΝΑ','Ν','ΝΔ','Δ','ΒΔ'];
+            return dirs[Math.round(deg / 45) % 8];
+        }
+
+        function renderWeather(data) {
+            const c  = data.current;
+            const d  = data.daily;
+            const now = new Date();
+
+            const [icon, desc] = wmo(c.weather_code);
+            const temp     = Math.round(c.temperature_2m);
+            const feels    = Math.round(c.apparent_temperature);
+            const humidity = c.relative_humidity_2m;
+            const wind     = Math.round(c.wind_speed_10m);
+            const wdir     = windDir(c.wind_direction_10m);
+
+            // Build forecast — filter to trip days only
+            let forecastRows = '';
+            const todayStr = now.toISOString().slice(0, 10);
+
+            d.time.forEach((dateStr, i) => {
+                if (!isTripDay(dateStr)) return;
+                const [fi, fd] = wmo(d.weather_code[i]);
+                const max  = Math.round(d.temperature_2m_max[i]);
+                const min  = Math.round(d.temperature_2m_min[i]);
+                const rain = d.precipitation_probability_max[i] || 0;
+                const isToday = dateStr === todayStr;
+                forecastRows += `
+                    <div class="forecast-day ${isToday ? 'today' : ''}">
+                        <span class="forecast-dayname">${tripDayLabel(dateStr).split(' ')[0]}</span>
+                        <span class="forecast-date">${tripDayLabel(dateStr).split(' ')[1]}</span>
+                        <span class="forecast-icon">${fi}</span>
+                        <span class="forecast-max">${max}°</span>
+                        <span class="forecast-min">${min}°</span>
+                        <span class="forecast-rain">💧${rain}%</span>
+                    </div>`;
+            });
+
+            const bar = document.getElementById('weatherBar');
+            bar.innerHTML = `
+                <div class="weather-current" onclick="toggleForecast()">
+                    <div class="weather-left">
+                        <span class="weather-icon">${icon}</span>
+                        <div>
+                            <span class="weather-temp">${temp}°C</span>
+                            <div class="weather-desc">${desc} · Αίσθηση ${feels}°</div>
+                        </div>
+                    </div>
+                    <div class="weather-mid">
+                        <span>💨 ${wind} km/h ${wdir}</span>
+                        <span>💧 ${humidity}%</span>
+                    </div>
+                    <div class="weather-right">
+                        <button id="weatherRefreshBtn" class="weather-refresh"
+                                onclick="event.stopPropagation(); fetchWeather()" title="Ανανέωση τώρα">🔄</button>
+                        <span class="weather-toggle ${weatherOpen ? 'open' : ''}" id="weatherToggleArrow">▼</span>
+                    </div>
+                </div>
+                <div class="weather-forecast ${weatherOpen ? 'open' : ''}" id="weatherForecast">
+                    <div class="forecast-grid">${forecastRows || '<div style="opacity:.7;font-size:.75rem">Δεν βρέθηκαν δεδομένα για τις ημέρες ταξιδιού</div>'}</div>
+                    <div class="weather-footer">
+                        <span>📍 St. Julian's · Open-Meteo</span>
+                        <span>⏱ ${fmtTime(now)} · αυτόματη ανανέωση κάθε 30'</span>
+                    </div>
+                </div>`;
+        }
+
+        function toggleForecast() {
+            weatherOpen = !weatherOpen;
+            const fc    = document.getElementById('weatherForecast');
+            const arrow = document.getElementById('weatherToggleArrow');
+            if (fc) fc.classList.toggle('open', weatherOpen);
+            if (arrow) arrow.classList.toggle('open', weatherOpen);
+        }
+
+        // Αρχική φόρτωση + timer κάθε 30 λεπτά
+        fetchWeather();
+        refreshTimer = setInterval(fetchWeather, REFRESH_MS);
+
     </script>
 </body>
 </html>
