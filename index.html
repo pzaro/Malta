@@ -257,6 +257,10 @@
             }
             event.target.classList.add('active');
             render();
+            // Ενημέρωσε τον καιρό για την επιλεγμένη μέρα (αν έχουμε δεδομένα)
+            if (type === 'day' && cachedWeatherData) {
+                renderWeather(cachedWeatherData, currentDay);
+            }
         }
 
         function render() {
@@ -389,8 +393,17 @@
         const DAYS_GR = ['Κυρ','Δευ','Τρί','Τετ','Πέμ','Παρ','Σάβ'];
         const MONTHS_GR = ['Ιαν','Φεβ','Μαρ','Απρ','Μαϊ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'];
 
-        let weatherOpen = false;
-        let refreshTimer = null;
+        let weatherOpen       = false;
+        let refreshTimer      = null;
+        let cachedWeatherData = null;
+
+        // Αριθμός ημέρας (1-7) → YYYY-MM-DD (Ημέρα 1 = 11/5, Ημέρα 7 = 17/5)
+        function getTripDate(dayNum) {
+            if (!dayNum) return null;
+            const base = new Date('2026-05-10T12:00:00');
+            base.setDate(base.getDate() + dayNum);
+            return base.toISOString().slice(0, 10);
+        }
 
         function wmo(code) {
             return WMO[code] || WMO[Math.floor(code / 10) * 10] || ['🌡️','Άγνωστο'];
@@ -431,12 +444,12 @@
 
             // Χρησιμοποιούμε URLSearchParams για σωστό encoding — timezone χωρίς %2F
             const params = new URLSearchParams({
-                latitude:     WEATHER_LAT,
-                longitude:    WEATHER_LON,
-                current:      'temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m',
-                daily:        'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max',
-                timezone:     'Europe/Malta',
-                forecast_days: '16',
+                latitude:        WEATHER_LAT,
+                longitude:       WEATHER_LON,
+                current:         'temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m',
+                daily:           'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max',
+                timezone:        'Europe/Malta',
+                forecast_days:   '16',
                 wind_speed_unit: 'kmh'
             });
             const url = 'https://api.open-meteo.com/v1/forecast?' + params.toString();
@@ -449,12 +462,12 @@
                 }
                 const data = await res.json();
 
-                // Null safety — αν η απάντηση δεν έχει current/daily
                 if (!data.current || !data.daily) {
                     throw new Error(data.reason || 'Μη αναμενόμενη μορφή δεδομένων API');
                 }
 
-                renderWeather(data);
+                cachedWeatherData = data;           // ← αποθήκευση
+                renderWeather(data, currentDay);    // ← πέρνα την τρέχουσα ημέρα
             } catch (e) {
                 console.error('[Weather]', e);
                 showWeatherError(e.message || 'Άγνωστο σφάλμα');
@@ -470,34 +483,106 @@
             return dirs[Math.round(deg / 45) % 8];
         }
 
-        function renderWeather(data) {
-            const c   = data.current  || {};
-            const d   = data.daily    || {};
-            const now = new Date();
+        function renderWeather(data, dayNum) {
+            const now      = new Date();
+            const todayStr = now.toISOString().slice(0, 10);
+            const d        = data.daily  || {};
+            const times    = d.time      || [];
 
-            const code     = c.weather_code ?? 0;
-            const [icon, desc] = wmo(code);
-            const temp     = c.temperature_2m       != null ? Math.round(c.temperature_2m)       : '—';
-            const feels    = c.apparent_temperature != null ? Math.round(c.apparent_temperature) : '—';
-            const humidity = c.relative_humidity_2m ?? '—';
-            const wind     = c.wind_speed_10m       != null ? Math.round(c.wind_speed_10m)       : '—';
-            const wdir     = windDir(c.wind_direction_10m);
+            // Ποια ημερομηνία-στόχος;
+            const targetDate = getTripDate(dayNum) || todayStr;
+            const targetIdx  = times.indexOf(targetDate);
 
-            // Forecast — μόνο ημέρες ταξιδιού
+            // ── Αριστερό τμήμα: current (dayNum=0) ή ημερήσια πρόβλεψη ──
+            let topHtml = '';
+
+            if (!dayNum) {
+                // ── Τρέχουσες συνθήκες ──
+                const c        = data.current || {};
+                const [icon, desc] = wmo(c.weather_code ?? 0);
+                const temp     = c.temperature_2m       != null ? Math.round(c.temperature_2m)       : '—';
+                const feels    = c.apparent_temperature != null ? Math.round(c.apparent_temperature) : '—';
+                const humidity = c.relative_humidity_2m ?? '—';
+                const wind     = c.wind_speed_10m       != null ? Math.round(c.wind_speed_10m)       : '—';
+                const wdir     = windDir(c.wind_direction_10m);
+
+                topHtml = `
+                    <div class="weather-current" onclick="toggleForecast()">
+                        <div class="weather-left">
+                            <span class="weather-icon">${icon}</span>
+                            <div>
+                                <span class="weather-temp">${temp}°C</span>
+                                <div class="weather-desc">${desc} · Αίσθηση ${feels}°</div>
+                            </div>
+                        </div>
+                        <div class="weather-mid">
+                            <span>💨 ${wind} km/h ${wdir}</span>
+                            <span>💧 ${humidity}%</span>
+                        </div>
+                        <div class="weather-right">
+                            <button id="weatherRefreshBtn" class="weather-refresh"
+                                    onclick="event.stopPropagation();fetchWeather()" title="Ανανέωση">🔄</button>
+                            <span class="weather-toggle ${weatherOpen?'open':''}" id="weatherToggleArrow">▼</span>
+                        </div>
+                    </div>`;
+
+            } else if (targetIdx >= 0) {
+                // ── Πρόβλεψη για συγκεκριμένη μέρα ──
+                const [icon, desc] = wmo(d.weather_code?.[targetIdx] ?? 0);
+                const max   = d.temperature_2m_max?.[targetIdx]          != null ? Math.round(d.temperature_2m_max[targetIdx])          : '—';
+                const min   = d.temperature_2m_min?.[targetIdx]          != null ? Math.round(d.temperature_2m_min[targetIdx])          : '—';
+                const rain  = d.precipitation_probability_max?.[targetIdx] ?? 0;
+                const wind  = d.wind_speed_10m_max?.[targetIdx]          != null ? Math.round(d.wind_speed_10m_max[targetIdx])          : '—';
+                const label = tripDayLabel(targetDate);
+                const badge = targetDate === todayStr ? ' · <b>Σήμερα</b>' : '';
+
+                topHtml = `
+                    <div class="weather-current" onclick="toggleForecast()">
+                        <div class="weather-left">
+                            <span class="weather-icon">${icon}</span>
+                            <div>
+                                <div style="font-size:0.72rem;font-weight:700;opacity:0.9">${label}${badge}</div>
+                                <div class="weather-desc">${desc}</div>
+                            </div>
+                        </div>
+                        <div class="weather-mid">
+                            <span style="font-size:0.8rem;font-weight:800">↑${max}° / ↓${min}°</span>
+                            <span>💧${rain}% · 💨${wind} km/h</span>
+                        </div>
+                        <div class="weather-right">
+                            <button id="weatherRefreshBtn" class="weather-refresh"
+                                    onclick="event.stopPropagation();fetchWeather()" title="Ανανέωση">🔄</button>
+                            <span class="weather-toggle ${weatherOpen?'open':''}" id="weatherToggleArrow">▼</span>
+                        </div>
+                    </div>`;
+
+            } else {
+                // Ημερομηνία εκτός εύρους πρόβλεψης
+                topHtml = `
+                    <div class="weather-current" style="cursor:default">
+                        <div class="weather-left">
+                            <span class="weather-icon">📅</span>
+                            <div>
+                                <div style="font-size:0.8rem;font-weight:700">Πρόβλεψη μη διαθέσιμη</div>
+                                <div style="font-size:0.67rem;opacity:0.7">για ${targetDate}</div>
+                            </div>
+                        </div>
+                        <button id="weatherRefreshBtn" class="weather-refresh" onclick="fetchWeather()">🔄</button>
+                    </div>`;
+            }
+
+            // ── Εκτεταμένη λωρίδα: ΟΛΕΣ οι μέρες ταξιδιού (εμφανίζεται όταν ανοίξει) ──
             let forecastRows = '';
-            const todayStr  = now.toISOString().slice(0, 10);
-            const times     = d.time || [];
-
             times.forEach((dateStr, i) => {
                 if (!isTripDay(dateStr)) return;
                 const [fi]  = wmo(d.weather_code?.[i] ?? 0);
-                const max   = d.temperature_2m_max?.[i] != null ? Math.round(d.temperature_2m_max[i])  : '—';
-                const min   = d.temperature_2m_min?.[i] != null ? Math.round(d.temperature_2m_min[i])  : '—';
+                const max   = d.temperature_2m_max?.[i] != null ? Math.round(d.temperature_2m_max[i]) : '—';
+                const min   = d.temperature_2m_min?.[i] != null ? Math.round(d.temperature_2m_min[i]) : '—';
                 const rain  = d.precipitation_probability_max?.[i] ?? 0;
-                const isToday = dateStr === todayStr;
-                const label   = tripDayLabel(dateStr).split(' ');
+                const isActive = dateStr === targetDate;  // highlight επιλεγμένης μέρας
+                const label    = tripDayLabel(dateStr).split(' ');
                 forecastRows += `
-                    <div class="forecast-day ${isToday ? 'today' : ''}">
+                    <div class="forecast-day ${isActive ? 'today' : ''}">
                         <span class="forecast-dayname">${label[0]}</span>
                         <span class="forecast-date">${label[1]}</span>
                         <span class="forecast-icon">${fi}</span>
@@ -507,31 +592,12 @@
                     </div>`;
             });
 
-            const noData = forecastRows === '';
-            const bar = document.getElementById('weatherBar');
-            bar.innerHTML = `
-                <div class="weather-current" onclick="toggleForecast()">
-                    <div class="weather-left">
-                        <span class="weather-icon">${icon}</span>
-                        <div>
-                            <span class="weather-temp">${temp}°C</span>
-                            <div class="weather-desc">${desc} · Αίσθηση ${feels}°</div>
-                        </div>
-                    </div>
-                    <div class="weather-mid">
-                        <span>💨 ${wind} km/h ${wdir}</span>
-                        <span>💧 ${humidity}%</span>
-                    </div>
-                    <div class="weather-right">
-                        <button id="weatherRefreshBtn" class="weather-refresh"
-                                onclick="event.stopPropagation(); fetchWeather()" title="Ανανέωση τώρα">🔄</button>
-                        <span class="weather-toggle ${weatherOpen ? 'open' : ''}" id="weatherToggleArrow">▼</span>
-                    </div>
-                </div>
-                <div class="weather-forecast ${weatherOpen ? 'open' : ''}" id="weatherForecast">
-                    <div class="forecast-grid">${noData
-                        ? '<div style="opacity:.7;font-size:.75rem;padding:4px">Πρόβλεψη για 11–17/5 δεν είναι ακόμα διαθέσιμη (API εμβέλεια)</div>'
-                        : forecastRows}</div>
+            document.getElementById('weatherBar').innerHTML = `
+                ${topHtml}
+                <div class="weather-forecast ${weatherOpen?'open':''}" id="weatherForecast">
+                    <div class="forecast-grid">${forecastRows ||
+                        '<div style="opacity:.7;font-size:.75rem;padding:4px">Δεν βρέθηκαν δεδομένα για 11–17/5</div>'
+                    }</div>
                     <div class="weather-footer">
                         <span>📍 St. Julian's · Open-Meteo ECMWF</span>
                         <span>⏱ ${fmtTime(now)} · ανανέωση/30'</span>
