@@ -51,7 +51,8 @@
     "transport": "🚶 5 λεπτά πεζή · Spinola Bay, St. Julian's",
     "prebook": false,
     "prebookNote": "",
-    "prebookUrl": ""
+    "prebookUrl": "",
+    "stars": 3
   },
   {
     "days": [
@@ -259,7 +260,8 @@
     "transport": "🚶 15-18' πεζή νότια κατά μήκος ακτής · ή Bus 13/14 (2 στάσεις)",
     "prebook": false,
     "prebookNote": "",
-    "prebookUrl": ""
+    "prebookUrl": "",
+    "stars": 3
   },
   {
     "days": [
@@ -366,7 +368,8 @@
     "transport": "🚶 5' πεζή · Balluta Square, St. Julian's",
     "prebook": false,
     "prebookNote": "",
-    "prebookUrl": ""
+    "prebookUrl": "",
+    "stars": 3
   },
   {
     "days": [
@@ -526,7 +529,8 @@
     "transport": "⛴️ Gozo Ferry → Bus 301 Victoria (25') → Bus 303 → Ramla Bay · ~45' από πλοίο",
     "prebook": false,
     "prebookNote": "",
-    "prebookUrl": ""
+    "prebookUrl": "",
+    "stars": 5
   },
   {
     "days": [
@@ -542,7 +546,8 @@
     "transport": "⛴️ Gozo Ferry → Bus 301 Victoria (25') → Bus 306 → Xlendi · ~40' από πλοίο",
     "prebook": false,
     "prebookNote": "",
-    "prebookUrl": ""
+    "prebookUrl": "",
+    "stars": 4
   },
   {
     "days": [
@@ -574,7 +579,8 @@
     "transport": "🚌 Bus 119 → Marsaxlokk (60') → Bolt/Taxi ~€7 (3km) προς St Peter's Pool · ή Bolt απευθείας ~€22",
     "prebook": false,
     "prebookNote": "",
-    "prebookUrl": ""
+    "prebookUrl": "",
+    "stars": 4
   },
   {
     "days": [
@@ -606,7 +612,8 @@
     "transport": "🚌 Bus 41/42/X1 → Mellieħa (45') → Comino Ferry ~20' (~€15) | Ή Bolt Mellieħa + ferry",
     "prebook": true,
     "prebookNote": "Κλείσε ΕΚΠΡΟΘΕΣΜΑ ferry Comino → cominoferries.com (~€15) — Μάιος = sold out!",
-    "prebookUrl": "https://www.cominoferries.com"
+    "prebookUrl": "https://www.cominoferries.com",
+    "stars": 5
   },
   {
     "days": [
@@ -622,7 +629,8 @@
     "transport": "🚶 18-20' πεζή · Sliema Ferries area",
     "prebook": false,
     "prebookNote": "",
-    "prebookUrl": ""
+    "prebookUrl": "",
+    "stars": 3
   },
   {
     "days": [
@@ -926,5 +934,103 @@
       "opensLabel": "Παρ 16/5 · 08:05",
       "closesLabel": "Σάβ 17/5 · 06:05"
     }
+  },
+  {
+    "days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "time": "Ευέλικτο",
+    "category": "🌊 Παραλίες",
+    "name": "St. George's Bay — Μπροστά από το ξενοδοχείο",
+    "mapQuery": "St George's Bay beach St Julian's Malta",
+    "distance": "🚶 5 λεπτά πεζή από The Londoner",
+    "transport": "🚶 5 λεπτά πεζή νότια · Ακτή St. Julian's",
+    "prebook": false,
+    "prebookNote": "",
+    "prebookUrl": "",
+    "stars": 3,
+    "tip": "Αμμουδιά με ξαπλώστρες δίπλα στο ξενοδοχείο — ιδανικό για γρήγορη βουτιά χωρίς μετακίνηση.",
+    "cost": "Δωρεάν (ξαπλώστρες: ~€5-8)",
+    "description": "🏖️ ST. GEORGE'S BAY — St. Julian's\n\n📍 Κυριολεκτικά 5 λεπτά πεζή από The Londoner Hotel.\n\nΑμμουδιά με λευκή άμμο στην καρδιά του St. Julian's. Περιτριγυρισμένη από ξενοδοχεία, εστιατόρια και beach bars. Έχει ξαπλώστρες και ομπρέλες προς ενοικίαση.\n\n⭐ ΑΞΙΟΛΟΓΗΣΗ:\n→ Παραλία: ★★★ (αστική, όχι κρυστάλλινη θάλασσα)\n→ Ιδανική για: γρήγορη βουτιά από το ξενοδοχείο\n→ Πότε: πρωί πριν γεμίσει τουρίστες ή αργά απόγευμα\n\n🌊 Νερά: καθαρά αλλά όχι tropical\n☀️ Καλύτερη ώρα: 07:00-09:00 πρωί (ήσυχο)\n\n🎙️ Tip:\n'Δεν είναι Comino, αλλά είναι η παραλία σου. Ξύπνα νωρίς, πέτα πετσέτα και βούτα πριν ξεκινήσει η μέρα. Με ένα ελληνικό καφέ στο χέρι μετά, άριστη αρχή!'"
+  },
+  {
+    "days": [
+      5
+    ],
+    "time": "10:00",
+    "category": "🌊 Παραλίες",
+    "name": "Mellieħa Bay (Għadira) — Η Μεγαλύτερη Αμμουδιά",
+    "mapQuery": "Mellieha Bay Ghadira beach Malta",
+    "distance": "Bus 41/42/X1 από San Giljan → ~45'",
+    "transport": "🚌 Bus 41/42/X1 από San Giljan → Mellieħa Bay · ~45 λεπτά · €2 | Στάση: Mellieħa Beach",
+    "prebook": false,
+    "prebookNote": "",
+    "prebookUrl": "",
+    "stars": 5,
+    "tip": "Η μόνη μεγάλη αμμουδιά στη Μάλτα — 800μ. αβαθής, ιδανική για παιδιά και χαλάρωση.",
+    "cost": "Δωρεάν (ξαπλώστρες: ~€10-15)",
+    "description": "🏖️ MELLIEĦA BAY (GĦADIRA BEACH)\n\n⭐⭐⭐⭐⭐ — Η πιο δημοφιλής παραλία της Μάλτας\n\nΜήκος: ~800 μέτρα χρυσαφένιας άμμου\nΘάλασσα: Αβαθής (ιδανική για παιδιά), Blue Flag 🏳️\nΝερά: Καθαρά, τυρκουάζ, σταδιακό βάθος\n\n🏄 ΔΡΑΣΤΗΡΙΟΤΗΤΕΣ:\n→ Windsurfing & Kite surfing (σχολές επί τόπου)\n→ Jetski & Watersports\n→ Kayak & Paddleboard rental\n→ Ξαπλώστρες & ομπρέλες (~€10-15)\n→ Ντους & αποδυτήρια\n→ Εστιατόρια & beach bars στην παραλία\n\n📍 ΚΟΝΤΙΝΑ:\n→ Popeye Village: 10 λεπτά με λεωφορείο/Bolt\n→ Mellieħa town: 10 λεπτά\n\n💡 ΣΥΝΔΥΑΖΕΤΑΙ ΤΕΛΕΙΑ με Popeye Village (Day 5)!\n\n🎙️ Tip:\n'Αυτή είναι η παραλία που περίμενες. Φτάσε πρωί για θέση με ξαπλώστρα, κολύμπα, μετά 5ο bus για Popeye Village. Άριστη μέρα. Μάλτα στο μέγιστο!'"
+  },
+  {
+    "days": [
+      3,
+      5
+    ],
+    "time": "11:00",
+    "category": "🌊 Παραλίες",
+    "name": "Golden Bay — Η Εμβληματική Παραλία",
+    "mapQuery": "Golden Bay beach Malta",
+    "distance": "Bus 41/42 → Mellieħa + Bus 47 → Golden Bay · ~60'",
+    "transport": "🚌 Bus 41/42 → Mellieħa (45') → Bus 47 → Golden Bay (15') · €2 | ή Bolt απευθείας ~€22",
+    "prebook": false,
+    "prebookNote": "",
+    "prebookUrl": "",
+    "stars": 5,
+    "tip": "Η πιο φωτογραφημένη παραλία της Μάλτας — χρυσή άμμος, ηλιοβασίλεμα απερίγραπτο.",
+    "cost": "Δωρεάν (ξαπλώστρες: ~€12)",
+    "description": "🏖️ GOLDEN BAY (Ramla tal-Mixquqa)\n\n⭐⭐⭐⭐⭐ — Η πιο εμβληματική παραλία της Μάλτας\n\nΗ αμμουδιά με τη χρυσαφένια άμμο που βλέπεις σε κάθε τουριστικό φυλλάδιο. Ημικυκλική κόλπος ανάμεσα σε βράχους και πεύκα.\n\n🌅 ΗΛΙΟΒΑΣΙΛΕΜΑ: Κορυφαία θέα! Ο ήλιος βουτά στη θάλασσα ακριβώς μπροστά σου.\n\n🏄 ΤΙ ΕΧΕΙ:\n→ Χρυσή αμμουδιά ~150μ.\n→ Blue Flag 🏳️ — καθαρά νερά\n→ Καφέ / μπαρ επί τόπου\n→ Ξαπλώστρες & ομπρέλες\n→ Αποδυτήρια & ντους\n→ Windsurfing & θαλάσσια σπορ\n\n📍 ΔΙΠΛΑ: Għajn Tuffieħa (20 λεπτά πεζή βόρεια)\n\n⚠️ Πολυσύχναστη το Σαββατοκύριακο — κατά προτίμηση καθημερινή.\n\n🎙️ Tip:\n'Φτάσε πριν τις 11. Πάρε ξαπλώστρα δεξιά (σκιά από τους βράχους το απόγευμα). Και μείνε για το ηλιοβασίλεμα — θα καταλάβεις γιατί όλοι φωτογραφίζουν εδώ.'"
+  },
+  {
+    "days": [
+      3,
+      5
+    ],
+    "time": "14:00",
+    "category": "🌊 Παραλίες",
+    "name": "Għajn Tuffieħa — Wild Beach χωρίς τουρίστες",
+    "mapQuery": "Ghajn Tuffieha beach Malta",
+    "distance": "20' πεζή από Golden Bay · ή Bus 47 (ίδια στάση)",
+    "transport": "🚌 Ίδια διαδρομή με Golden Bay · Bus 41/42 → Mellieħa → Bus 47 | 20' πεζή από Golden Bay",
+    "prebook": false,
+    "prebookNote": "",
+    "prebookUrl": "",
+    "stars": 4,
+    "tip": "Λιγότερο γνωστή από Golden Bay, πιο άγρια, 196 σκαλιά κατάβαση — αξίζει κάθε βήμα!",
+    "cost": "Δωρεάν (χωρίς ξαπλώστρες)",
+    "description": "🏖️ GĦAJN TUFFIEĦA (Riviera Beach)\n\n⭐⭐⭐⭐ — Κρυφό διαμάντι\n\nΜια από τις πιο αγαπημένες παραλίες των ντόπιων. Λιγότερο εμπορική από Golden Bay, πιο φυσική, μεγαλύτερη άμμος.\n\n📍 ΠΡΟΣΒΑΣΗ:\n→ 196 σκαλιά κατάβαση (και ανάβαση!) — φόρα αθλητικά παπούτσια\n→ Μπορείς να φτάσεις πεζή από Golden Bay σε ~20 λεπτά κατά μήκος ακτογραμμής\n\n✅ ΤΙ ΤΗΝ ΚΑΝΕΙ ΞΕΧΩΡΙΣΤΗ:\n→ Καθαρά, σκούρα τυρκουάζ νερά\n→ Δραματικοί βράχοι γύρω\n→ Χωρίς ξαπλώστρες ή μπαρ — αυθεντική εμπειρία\n→ Ηλιοβασίλεμα εξαιρετικό\n→ Καλύτερο snorkeling από Golden Bay\n\n⚠️ ΔΕΝ ΕΧΕΙ:\n→ Σκιά (φέρε ομπρέλα ή πηγαίνε αρχές/τέλος μέρας)\n→ Μπαρ / καφέ (φέρε νερό!)\n→ Εύκολη πρόσβαση (196 σκαλιά)\n\n🎙️ Tip:\n'Αν τολμάς τα σκαλιά, αυτή είναι η παραλία σου. Μικρότερο πλήθος, καλύτερο νερό, πιο αυθεντική. Συνδύασε Golden Bay το πρωί + Għajn Tuffieħa απόγευμα — άριστη beach day!'"
+  },
+  {
+    "days": [
+      4
+    ],
+    "time": "12:30",
+    "category": "🌊 Παραλίες",
+    "name": "Wied il-Għasri — Το Φιόρδ του Gozo 🔥",
+    "mapQuery": "Wied il-Ghasri valley beach Gozo Malta",
+    "distance": "Taxi €8-10 από Victoria · ή Marsalforn Bus 310 + 30' πεζή",
+    "transport": "🚗 Taxi/Bolt €8-10 από Victoria Gozo · ή Bus 310 → Marsalforn + 30' πεζή (απαιτεί χρόνο) | ⚠️ Δεν εξυπηρετείται άμεσα με bus",
+    "prebook": false,
+    "prebookNote": "",
+    "prebookUrl": "",
+    "stars": 5,
+    "tip": "Φιόρδ 300μ. βαθιά σε κλίφ — το πιο εντυπωσιακό φυσικό τοπίο της Μάλτας. Κρυστάλλινο νερό, σχεδόν μόνο συ.",
+    "cost": "Δωρεάν | Taxi από Victoria: €8-10",
+    "description": "🏖️ WIED IL-GĦASRI (Għasri Valley)\n\n⭐⭐⭐⭐⭐ — Κρυμμένο αριστούργημα του Gozo\n\nΈνα στενό κανιόν που σε οδηγεί σε μια πολυβούτιστη καταγάλανη λιμνοθάλασσα ανάμεσα σε κατακόρυφους βράχους. Φαίνεται σαν Νορβηγικό φιόρδ — στη Μεσόγειο.\n\n📐 ΤΟΠΟΘΕΣΙΑ:\n→ Βόρεια ακτή Gozo, κοντά στο Żebbuġ\n→ 3 χλμ. από Marsalforn\n→ ~100 σκαλιά λαξευμένα στον βράχο για κατάβαση\n\n🤿 SNORKELING:\n→ Από τα καλύτερα spots στη Μεσόγειο\n→ Κρυστάλλινα νερά, εξαιρετική ορατότητα\n→ Μικροί ψάρες κρυμμένοι στα βράχια\n→ Σπηλιές κάτω από την επιφάνεια\n→ Φωτεινές ακτίνες που διαπερνούν το νερό σε ηλιόλουστες μέρες\n\n⚠️ ΣΗΜΑΝΤΙΚΟ:\n→ Παραλία: μικρές χαλίκες (όχι άμμος) — φέρε υδρόβια παπούτσια\n→ Καμία εγκατάσταση: φέρε νερό, σνακ, αντηλιακό\n→ Μόνο για ήρεμη θάλασσα — αν φυσάει, επικίνδυνο\n→ Μικρή χωρητικότητα — πήγαινε πρωί\n\n🎙️ Tip:\n'Αυτό το μέρος δεν υπάρχει στα τουριστικά φυλλάδια. Το ξέρουν μόνο οι ντόπιοι και λίγοι τυχεροί ταξιδιώτες. Πάρε taxi από Victoria (€8), κατέβα τα 100 σκαλιά, και όταν φτάσεις κάτω... δεν θα πιστεύεις ότι υπάρχει αυτό το μέρος. Φέρε υδρόβια γυαλιά — ΑΠΑΡΑΙΤΗΤΑ.'",
+    "description_sources": "Open-Meteo, travel2malta.com, gozoblu.com"
   }
 ]
