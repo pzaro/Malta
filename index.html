@@ -25,6 +25,18 @@
         .name { font-size: 1.3rem; font-weight: 800; margin: 5px 0; color: #2c3e50; font-family: "Georgia", serif; }
         
         .distance-tag { font-size: 0.9rem; color: #555; display: block; margin-bottom: 5px; background: #eee; padding: 3px 8px; border-radius: 4px; width: fit-content; }
+
+        .transport-tag {
+            font-size: 0.82rem; color: #1a5276; background: #d6eaf8;
+            padding: 5px 10px; border-radius: 4px; margin-bottom: 5px;
+            border-left: 3px solid #2e86c1; display: block; line-height: 1.5;
+        }
+        .prebook-tag {
+            font-size: 0.8rem; color: #784212; background: #fef5e7;
+            padding: 5px 10px; border-radius: 4px; margin-bottom: 5px;
+            border-left: 3px solid #e67e22; display: block; font-weight: 600; line-height: 1.5;
+        }
+        .prebook-tag a { color: #d35400; }
         
         .meta-info { display: flex; gap: 10px; margin-top: 8px; font-size: 0.9rem; }
         .time-badge { background: #2c3e50; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
@@ -287,15 +299,30 @@
             }
 
             currentDisplayData.forEach((item, index) => {
-                const distanceHtml = item.distance ? `<span class="distance-tag">👣 Από Βάση/Προηγούμενο: <b>${item.distance}</b></span>` : '';
+                const distanceHtml  = item.distance
+                    ? `<span class="distance-tag">📍 ${item.distance}</span>` : '';
+
+                const transportHtml = item.transport
+                    ? `<span class="transport-tag">${item.transport}</span>` : '';
+
+                let prebookHtml = '';
+                if (item.prebook && item.prebookNote) {
+                    const link = item.prebookUrl
+                        ? ` — <a href="${item.prebookUrl}" target="_blank">${new URL(item.prebookUrl).hostname.replace('www.','')}</a>`
+                        : '';
+                    prebookHtml = `<span class="prebook-tag">⚠️ ${item.prebookNote}${link}</span>`;
+                }
+
                 const searchQuery = encodeURIComponent((item.mapQuery || item.name) + " Malta");
-                const realMapUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+                const realMapUrl  = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
 
                 container.innerHTML += `
                     <div class="card">
                         <div class="category-tag">${item.category}</div>
                         <div class="name">${item.name}</div>
                         ${distanceHtml}
+                        ${transportHtml}
+                        ${prebookHtml}
                         <div class="meta-info">
                             <span class="time-badge">🕒 ${item.time || '-'}</span>
                             <span class="cost-badge">💰 ${item.cost}</span>
