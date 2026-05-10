@@ -872,5 +872,59 @@
     "tip": "Σταθερές κυβερνητικές τιμές από αεροδρόμιο. Ακριβότερα από apps αλλά 100% αξιόπιστα, 24/7.",
     "cost": "Αεροδρόμιο → St. Julian's: €20 | → Βαλέτα: €17",
     "description": "🏛️ ΕΠΙΣΗΜΑ ΛΕΥΚΑ ΤΑΞΙ ΜΑΛΤΑΣ\n\nΛευκά αυτοκίνητα με μαύρη πινακίδα TAXI στη στέγη και μαύρα στοιχεία εγγραφής. Ρυθμιζόμενα από την Transport Malta.\n\n💰 ΣΤΑΘΕΡΕΣ ΤΙΜΕΣ ΑΠΟ ΑΕΡΟΔΡΟΜΙΟ (2025):\n→ Αεροδρόμιο → St. Julian's:   €20\n→ Αεροδρόμιο → Βαλέτα:         €17\n→ Αεροδρόμιο → Sliema:          €18\n→ Αεροδρόμιο → Mdina:           €25\n→ Αεροδρόμιο → Mosta:           €18\n\n⚠️ ΣΗΜΑΝΤΙΚΟ — Booth Αεροδρομίου:\n① Βρες το Taxi Booth στο Welcomers' Hall (αφίξεις)\n② Αγόρασε προπληρωμένο εισιτήριο (σταθερή τιμή)\n③ Δώσε το εισιτήριο στον οδηγό στη σειρά\n→ ΜΗΝ μπεις σε ταξί ΕΚΤΟΣ booth — έχει ταξίμετρο και κοστίζει πολύ περισσότερο!\n\n📅 ΕΠΙΠΛΕΟΝ ΧΡΕΩΣΕΙΣ:\n→ Χριστούγεννα / Πρωτοχρονιά: +€4.50 flat\n→ Αποσκευές: μερικοί οδηγοί χρεώνουν extra\n→ Νυχτερινές ώρες: ελέγξτε τιμή στο booth\n\n✅ ΠΛΕΟΝΕΚΤΗΜΑΤΑ:\n→ 100% αξιόπιστο — κυβερνητικά ρυθμιζόμενο\n→ Δέχεται μετρητά\n→ Χωρίς app, χωρίς internet\n→ Άμεσα διαθέσιμο στο αεροδρόμιο 24/7\n\n🎙️ Tip:\n'Για άφιξη 11/5 στις 15:05 — το λεωφορείο TD2 είναι η πιο οικονομική λύση (€2.50). Αλλά αν έχεις βαριές βαλίτσες, πάρε λευκό ταξί από το booth. €20 σταθερή τιμή, κανένα άγχος.'"
+  },
+  {
+    "days": [
+      1
+    ],
+    "time": "14:20 (Σάβ 10/5 — πριν φύγεις!)",
+    "category": "✈️ Check-in",
+    "name": "Check-in FR7130 — Θεσσαλονίκη → Μάλτα",
+    "mapQuery": "Ryanair online check-in",
+    "distance": "Online — από το κινητό/laptop σου",
+    "transport": "🌐 Online: ryanair.com/gr/el/online-check-in | Άνοιγμα 24h πριν · Κλείσιμο 2h πριν",
+    "prebook": false,
+    "prebookNote": "",
+    "prebookUrl": "",
+    "tip": "Κάνε check-in ΑΜΕΣΩΣ μόλις ανοίξει — πιάνεις καλύτερη θέση χωρίς extra χρέωση!",
+    "cost": "Δωρεάν (αν δεν επιλέξεις θέση premium)",
+    "description": "✈️ RYANAIR CHECK-IN — FR7130\n\nΘεσσαλονίκη (SKG) 14:20 → Μάλτα (MLA) 15:05\nΗμέρα: Κυριακή 11 Μαΐου 2026\n\n⏰ ΧΡΟΝΟΔΙΑΓΡΑΜΜΑ:\n→ Check-in ΑΝΟΙΓΕΙ: Σάβ 10/5 στις 14:20 (ακριβώς 24h πριν)\n→ Check-in ΚΛΕΙΝΕΙ: Κυρ 11/5 στις 12:20 (2h πριν αναχώρηση)\n\n📋 ΤΙ ΧΡΕΙΑΖΕΣΑΙ:\n→ Αριθμός κράτησης (PNR) Ryanair\n→ Ταξιδιωτικό έγγραφο (ταυτότητα ή διαβατήριο)\n→ Email επιβεβαίωσης\n\n📱 ΒΗΜΑΤΑ CHECK-IN:\n① ryanair.com → «Online Check-in»\n② Εισήγαγε PNR + επώνυμο\n③ Επέλεξε θέση (δωρεάν τυχαία ή €)\n④ Κατέβασε boarding pass στο κινητό\n⑤ Πρόσθεσε στο Apple/Google Wallet\n\n💡 Tip: Αν ταξιδεύεις με χειραποσκευή μόνο, δεν χρειάζεσαι check-in στο αεροδρόμιο — δείχνεις απευθείας το boarding pass.",
+    "checkin": {
+      "dtstart": "20260510T112000Z",
+      "dtend": "20260510T114500Z",
+      "summary": "✈️ Check-in ΑΝΟΙΓΕΙ — FR7130 ΘΕΣ→ΜΑΛ",
+      "description": "Ryanair check-in για FR7130 ΑΝΟΙΓΕΙ ΤΩΡΑ!\\n\\nΠτήση: FR7130\\nΘεσσαλονίκη (SKG) 14:20 → Μάλτα (MLA) 15:05\\n\\n👉 Check-in: https://www.ryanair.com/gr/el/online-check-in\\n\\n⚠️ Κλείνει στις 12:20 ώρα Ελλάδας (2h πριν)!",
+      "location": "https://www.ryanair.com/gr/el/online-check-in",
+      "filename": "checkin_FR7130_malta2026.ics",
+      "opensLabel": "Σάβ 10/5 · 14:20",
+      "closesLabel": "Κυρ 11/5 · 12:20"
+    }
+  },
+  {
+    "days": [
+      6
+    ],
+    "time": "08:05 (Παρ 16/5 — σήμερα!)",
+    "category": "✈️ Check-in",
+    "name": "Check-in FR7131 — Μάλτα → Θεσσαλονίκη",
+    "mapQuery": "Ryanair online check-in",
+    "distance": "Online — από το κινητό/laptop σου",
+    "transport": "🌐 Online: ryanair.com/gr/el/online-check-in | Άνοιγμα 08:05 · Κλείσιμο 17/5 06:05",
+    "prebook": true,
+    "prebookNote": "Κλείσε Bolt/eCabs για αύριο 05:30 ΣΗΜΕΡΑ βράδυ — αναχώρηση αεροδρόμιο 17/5!",
+    "prebookUrl": "",
+    "tip": "Κάνε check-in μόλις ξυπνήσεις — και ΜΗΝ ξεχάσεις να κλείσεις Bolt για αύριο 05:30!",
+    "cost": "Δωρεάν (αν δεν επιλέξεις θέση premium)",
+    "description": "✈️ RYANAIR CHECK-IN — FR7131\n\nΜάλτα (MLA) 08:05 → Θεσσαλονίκη (SKG) 10:40\nΗμέρα: Σάββατο 17 Μαΐου 2026\n\n⏰ ΧΡΟΝΟΔΙΑΓΡΑΜΜΑ:\n→ Check-in ΑΝΟΙΓΕΙ: Παρ 16/5 στις 08:05 (ακριβώς 24h πριν)\n→ Check-in ΚΛΕΙΝΕΙ: Σάβ 17/5 στις 06:05 (2h πριν αναχώρηση)\n\n🚨 ΣΗΜΑΝΤΙΚΟ ΓΙΑ ΑΥΡΙΟ (17/5):\n→ Check-out ξενοδοχείου: 11:30\n→ Bolt/eCabs: κλείσε ΣΗΜΕΡΑ για 05:30 αύριο πρωί\n→ Αεροδρόμιο: άφιξη πριν 06:00\n→ Πτήση: 08:05\n\n📱 ΒΗΜΑΤΑ CHECK-IN:\n① ryanair.com → «Online Check-in»\n② Εισήγαγε PNR + επώνυμο\n③ Επέλεξε θέση (δωρεάν τυχαία ή €)\n④ Κατέβασε boarding pass\n⑤ Πρόσθεσε στο Apple/Google Wallet\n\n💡 Μην φεύγεις χωρίς να έχεις boarding pass offline στο κινητό σου.",
+    "checkin": {
+      "dtstart": "20260516T060500Z",
+      "dtend": "20260516T062500Z",
+      "summary": "✈️ Check-in ΑΝΟΙΓΕΙ — FR7131 ΜΑΛ→ΘΕΣ",
+      "description": "Ryanair check-in για FR7131 ΑΝΟΙΓΕΙ ΤΩΡΑ!\\n\\nΠτήση: FR7131\\nΜάλτα (MLA) 08:05 → Θεσσαλονίκη (SKG) 10:40\\n\\n👉 Check-in: https://www.ryanair.com/gr/el/online-check-in\\n\\n⚠️ Κλείνει 17/5 στις 06:05 ώρα Μάλτας!\\n🚗 Bolt κλεισμένο για αύριο 05:30!",
+      "location": "https://www.ryanair.com/gr/el/online-check-in",
+      "filename": "checkin_FR7131_malta2026.ics",
+      "opensLabel": "Παρ 16/5 · 08:05",
+      "closesLabel": "Σάβ 17/5 · 06:05"
+    }
   }
 ]
