@@ -37,6 +37,66 @@
             border-left: 3px solid #e67e22; display: block; font-weight: 600; line-height: 1.5;
         }
         .prebook-tag a { color: #d35400; }
+
+        /* ── CHECK-IN SECTION ── */
+        .checkin-section {
+            margin-top: 14px;
+            background: #eaf4fb;
+            border: 1px solid #aed6f1;
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .checkin-times {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .checkin-time-box {
+            flex: 1;
+            background: white;
+            border-radius: 6px;
+            padding: 7px 10px;
+            text-align: center;
+            border: 1px solid #d6eaf8;
+        }
+        .checkin-time-box .ct-label {
+            font-size: 0.62rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .checkin-time-box .ct-value {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #1a5276;
+            margin-top: 2px;
+        }
+        .checkin-time-box.opens .ct-value { color: #27ae60; }
+        .checkin-time-box.closes .ct-value { color: #c0392b; }
+        .checkin-btn-row {
+            display: flex;
+            gap: 8px;
+        }
+        .checkin-btn-row .ci-btn {
+            flex: 1;
+            padding: 10px 6px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: opacity 0.15s;
+        }
+        .checkin-btn-row .ci-btn:active { opacity: 0.75; }
+        .ci-gcal  { background: #4285f4; color: white; }
+        .ci-ics   { background: #2c3e50; color: white; }
+        .ci-fly   { background: #073590; color: white; }
         
         .meta-info { display: flex; gap: 10px; margin-top: 8px; font-size: 0.9rem; }
         .time-badge { background: #2c3e50; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
@@ -221,6 +281,7 @@
                 <button class="btn-filter" onclick="filterData('cat', 'παραλίες')">🌊 Παραλίες</button>
                 <button class="btn-filter" onclick="filterData('cat', 'μεταφορές')">🚌 Μεταφορές</button>
                 <button class="btn-filter" onclick="filterData('cat', 'κινηματογράφος')">🎬 Κινηματογράφος</button>
+                <button class="btn-filter" onclick="filterData('cat', 'check-in')">✈️ Check-in</button>
             </div>
         </div>
     </div>
@@ -313,6 +374,31 @@
                     prebookHtml = `<span class="prebook-tag">⚠️ ${item.prebookNote}${link}</span>`;
                 }
 
+                // Check-in section (εμφανίζεται μόνο σε καρτέλες με checkin object)
+                let checkinHtml = '';
+                if (item.checkin) {
+                    const ci = item.checkin;
+                    const gcalUrl = buildGcalUrl(ci);
+                    checkinHtml = `
+                        <div class="checkin-section">
+                            <div class="checkin-times">
+                                <div class="checkin-time-box opens">
+                                    <div class="ct-label">✅ Ανοίγει</div>
+                                    <div class="ct-value">${ci.opensLabel}</div>
+                                </div>
+                                <div class="checkin-time-box closes">
+                                    <div class="ct-label">🔒 Κλείνει</div>
+                                    <div class="ct-value">${ci.closesLabel}</div>
+                                </div>
+                            </div>
+                            <div class="checkin-btn-row">
+                                <a href="${gcalUrl}" target="_blank" class="ci-btn ci-gcal">📅 Google Calendar</a>
+                                <button class="ci-btn ci-ics" onclick="downloadICS(${index})">⬇️ .ics</button>
+                                <a href="${ci.location}" target="_blank" class="ci-btn ci-fly">✈️ Check-in</a>
+                            </div>
+                        </div>`;
+                }
+
                 const searchQuery = encodeURIComponent((item.mapQuery || item.name) + " Malta");
                 const realMapUrl  = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
 
@@ -328,6 +414,7 @@
                             <span class="cost-badge">💰 ${item.cost}</span>
                         </div>
                         <div class="tip">💡 ${item.tip}</div>
+                        ${checkinHtml}
                         <div class="card-actions">
                             <button class="action-btn info-btn" onclick="openModal(${index})">ℹ️ Πλήρης Ανάλυση</button>
                             <a href="${realMapUrl}" target="_blank" class="action-btn map-btn">📍 Χάρτης</a>
@@ -377,6 +464,59 @@
             document.getElementById('speakBtn').style.display = isSpeaking ? 'none' : 'block';
             document.getElementById('stopBtn').style.display = isSpeaking ? 'block' : 'none';
         }
+        /* ════════════════════════════════════════
+           CHECK-IN CALENDAR FUNCTIONS
+           ════════════════════════════════════════ */
+
+        function buildGcalUrl(ci) {
+            const base = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
+            return base
+                + '&text='     + encodeURIComponent(ci.summary)
+                + '&dates='    + ci.dtstart + '/' + ci.dtend
+                + '&details='  + encodeURIComponent(ci.description.replace(/\\n/g, '\n'))
+                + '&location=' + encodeURIComponent(ci.location);
+        }
+
+        function buildICS(ci) {
+            return [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Malta Dousis Guide 2026//Check-in//GR',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH',
+                'BEGIN:VEVENT',
+                'DTSTART:' + ci.dtstart,
+                'DTEND:'   + ci.dtend,
+                'SUMMARY:' + ci.summary,
+                'DESCRIPTION:' + ci.description,
+                'LOCATION:' + ci.location,
+                'URL:'      + ci.location,
+                'STATUS:CONFIRMED',
+                'BEGIN:VALARM',
+                'TRIGGER:PT0S',
+                'ACTION:DISPLAY',
+                'DESCRIPTION:' + ci.summary,
+                'END:VALARM',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+        }
+
+        function downloadICS(index) {
+            const item = currentDisplayData[index];
+            if (!item || !item.checkin) return;
+            const ci   = item.checkin;
+            const blob = new Blob([buildICS(ci)], { type: 'text/calendar;charset=utf-8' });
+            const url  = URL.createObjectURL(blob);
+            const a    = document.createElement('a');
+            a.href     = url;
+            a.download = ci.filename || 'checkin.ics';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
         /* ════════════════════════════════════════
            WEATHER — Open-Meteo API (no key needed)
            St. Julian's, Malta: 35.9172, 14.4889
