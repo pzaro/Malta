@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇲🇹 Μάλτα 2026: Dousis Ultimate Guide</title>
+    <title>Μάλτα: Dousis Ultimate Guide</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fdf6e3; color: #2c3e50; margin: 0; padding-bottom: 60px; }
         
-        .header { background: #fff; position: sticky; top: 0; z-index: 900; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 10px 0; border-bottom: 3px solid #d35400; }
+        .header { background: #fff; position: sticky; top: 0; z-index: 900; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 10px 0; border-bottom: 3px solid #d4af37; }
         h1 { text-align: center; color: #2c3e50; margin: 5px 0; font-size: 1.3rem; font-family: "Georgia", serif; }
         
         .filters-wrapper { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
         .scroll-container { display: flex; overflow-x: auto; gap: 8px; padding: 0 15px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
         .scroll-container::-webkit-scrollbar { display: none; }
         
-        .btn-filter { flex: 0 0 auto; padding: 8px 15px; border-radius: 20px; border: 1px solid #d35400; background: #fff; font-size: 0.85rem; color: #555; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-        .btn-filter.active { background: #d35400; color: white; border-color: #d35400; }
+        .btn-filter { flex: 0 0 auto; padding: 8px 15px; border-radius: 20px; border: 1px solid #d4af37; background: #fff; font-size: 0.85rem; color: #555; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .btn-filter.active { background: #d4af37; color: white; border-color: #d4af37; }
         .date-btn.active { background: #2c3e50; border-color: #2c3e50; }
 
         .container { max-width: 600px; margin: 0 auto; padding: 15px; }
-        .card { background: white; border-radius: 4px; padding: 15px; margin-bottom: 15px; border-left: 5px solid #d35400; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+        .card { background: white; border-radius: 4px; padding: 15px; margin-bottom: 15px; border-left: 5px solid #d4af37; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
         
-        .category-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #d35400; letter-spacing: 1px; }
+        .category-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #d4af37; letter-spacing: 1px; }
         .name { font-size: 1.3rem; font-weight: 800; margin: 5px 0; color: #2c3e50; font-family: "Georgia", serif; }
         
         .distance-tag { font-size: 0.9rem; color: #555; display: block; margin-bottom: 5px; background: #eee; padding: 3px 8px; border-radius: 4px; width: fit-content; }
@@ -34,7 +34,7 @@
 
         .card-actions { display: flex; gap: 10px; margin-top: 15px; }
         .action-btn { flex: 1; padding: 12px; border-radius: 4px; text-align: center; font-weight: bold; text-decoration: none; font-size: 0.9rem; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; }
-        .map-btn { background: white; color: #2c3e50; border: 1px solid #2c3e50; }
+        .map-btn { background: white; color: #2c3e50; border: 1px solid #2c3e50; display: flex; align-items: center; justify-content: center; }
         .info-btn { background: #2c3e50; color: white; display: flex; align-items: center; justify-content: center; gap: 5px; }
 
         /* MODAL */
@@ -45,8 +45,8 @@
         .close-btn { background: none; border: none; font-size: 2rem; color: #888; cursor: pointer; }
         .modal-body { font-size: 1.05rem; line-height: 1.6; color: #333; white-space: pre-line; }
         .audio-controls { margin-top: 20px; display: flex; gap: 10px; border-top: 1px solid #eee; padding-top: 15px; }
-        .speak-btn { background: #d35400; color: white; width: 100%; border-radius: 8px; padding: 12px; font-weight: bold; border: none; cursor: pointer;}
-        .stop-btn { background: #c0392b; color: white; display: none; width: 100%; border-radius: 8px; padding: 12px; font-weight: bold; border: none; cursor: pointer;}
+        .speak-btn { background: #d4af37; color: white; width: 100%; border-radius: 8px; padding: 12px; font-weight: bold; border: none; cursor: pointer; }
+        .stop-btn { background: #c0392b; color: white; display: none; width: 100%; border-radius: 8px; padding: 12px; font-weight: bold; border: none; cursor: pointer; }
         
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     </style>
@@ -54,26 +54,24 @@
 <body>
 
     <div class="header">
-        <h1>🇲🇹 Malta 2026: Dousis Guide</h1>
+        <h1>🇲🇹 Malta: Mediterranean Guide</h1>
         <div class="filters-wrapper">
             <div class="scroll-container">
                 <button class="btn-filter date-btn active" onclick="filterData('day', 0)">Όλα</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 1)">Δευ 11/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 2)">Τρί 12/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 3)">Τετ 13/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 4)">Πέμ 14/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 5)">Παρ 15/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 6)">Σάβ 16/5</button>
-                <button class="btn-filter date-btn" onclick="filterData('day', 7)">Κυρ 17/5</button>
+                <button class="btn-filter date-btn" onclick="filterData('day', 1)">Κυρ 11/5</button>
+                <button class="btn-filter date-btn" onclick="filterData('day', 2)">Δευ 12/5</button>
+                <button class="btn-filter date-btn" onclick="filterData('day', 3)">Τρί 13/5</button>
+                <button class="btn-filter date-btn" onclick="filterData('day', 4)">Τετ 14/5</button>
+                <button class="btn-filter date-btn" onclick="filterData('day', 5)">Πέμ 15/5</button>
+                <button class="btn-filter date-btn" onclick="filterData('day', 6)">Παρ 16/5</button>
+                <button class="btn-filter date-btn" onclick="filterData('day', 7)">Σάβ 17/5</button>
             </div>
             <div class="scroll-container">
                 <button class="btn-filter active" onclick="filterData('cat', 'all')">Όλα</button>
                 <button class="btn-filter" onclick="filterData('cat', 'αξιοθέατα')">🏛️ Αξιοθέατα</button>
                 <button class="btn-filter" onclick="filterData('cat', 'φαγητό')">🥪 Φαγητό</button>
                 <button class="btn-filter" onclick="filterData('cat', 'ποτό')">🍸 Ποτό</button>
-                <button class="btn-filter" onclick="filterData('cat', 'διασκέδαση')">🎶 Διασκέδαση</button>
-                <button class="btn-filter" onclick="filterData('cat', 'παραλίες')">🌊 Παραλίες</button>
-                <button class="btn-filter" onclick="filterData('cat', 'μεταφορές')">🚌 Μεταφορές</button>
+                <button class="btn-filter" onclick="filterData('cat', 'μεταφορές')">⛴️ Μεταφορές</button>
             </div>
         </div>
     </div>
@@ -95,122 +93,163 @@
     </div>
 
     <script>
-        let allData = [];
-        let currentDisplayData = [];
-        let currentDay = 0;
-        let currentCat = 'all';
-        let currentTextToSpeak = "";
-        const synth = window.speechSynthesis;
+        const allData = [
+          /* ─────────────────────────── ΒΑΣΗ ─────────────────────────── */
+          {
+            "days": [1, 2, 3, 4, 5, 6, 7],
+            "time": "Ευέλικτο",
+            "category": "🏨 Η Βάση μου",
+            "name": "The Londoner Hotel St. Julian's",
+            "mapQuery": "The Londoner Hotel 138 St George's Road St Julian's Malta",
+            "distance": "0' (Εδώ είσαι — St. Julian's)",
+            "tip": "Στην καρδιά του St. Julian's. Paceville, Spinola Bay και Σλίεμα σε βήμα πόδι.",
+            "cost": "-",
+            "description": "📍 Διεύθυνση: 138 St. George's Road, St. Julian's STJ 3202, Malta\n📞 +356 2713 5200\n\nΗ βάση σου για αυτό το 6ήμερο! The Londoner βρίσκεται ακριβώς στη ζωντανή καρδιά του St. Julian's, 5 λεπτά πεζή από τη St. George's Bay Beach.\n\n📍 Στρατηγική Μετακινήσεων:\nΗ στάση λεωφορείου είναι μερικά βήματα από την πόρτα. Γραμμές 13, 13A, 14, 15 συνδέουν άμεσα με Βαλέτα. Για το αεροδρόμιο, χρησιμοποίησε τη γραμμή TD2 (κάθε 30 λεπτά) ή TD3 κατά μήκος της παραλίας μέσω Σλίεμα.\n\n🎙️ Tip Δούση:\n'Φίλοι μου, δεν θα χρειαστείτε ταξί για το σούπερ-μάρκετ, τη θάλασσα ή το ποτό σας. Εδώ είναι όλα ήδη στην πόρτα σας!'"
+          },
 
-        // Fetch API για να τραβάει τα δεδομένα από το locations.json
-        fetch('locations.json')
-            .then(res => res.json())
-            .then(data => { allData = data; render(); })
-            .catch(err => console.error("Error loading JSON:", err));
+          /* ──────────────────────── ΗΜΕΡΑ 1 — Κυρ 11/5 ──────────────────── */
+          {
+            "days": [1],
+            "time": "15:05",
+            "category": "✈️ Μεταφορές",
+            "name": "Άφιξη Μάλτα — FR7130 & Μεταφορά στο Ξενοδοχείο",
+            "mapQuery": "Malta International Airport Luqa Malta",
+            "distance": "Άφιξη από Θεσσαλονίκη",
+            "tip": "Χρησιμοποίησε λεωφορείο TD2 ή ταξί — η X2 δεν υπάρχει πλέον από το 2025.",
+            "cost": "€2.50 (λεωφορείο) ή ~€20 (ταξί)",
+            "description": "✈️ Πτήση: FR7130 — Θεσσαλονίκη 14:20 → Μάλτα 15:05\n\n🚌 ΕΠΙΛΟΓΗ 1 — Λεωφορείο TD2 (€2.50 | 30 λεπτά)\n① Βγες από τις αφίξεις και πήγαινε στο μπλε γραφείο Malta Public Transport ή το μηχάνημα Tallinja για εισιτήριο\n② Βρες τη στάση TD2 ακριβώς έξω από το terminal\n③ Κατέβα στη στάση 'San Giljan' — 3-5 λεπτά πεζή στο ξενοδοχείο\n④ Ωράριο: κάθε 30 λεπτά, 05:00–00:30\n\n🚕 ΕΠΙΛΟΓΗ 2 — Ταξί με σταθερή τιμή (~€20)\n① Στο Welcomers' Hall αγόρασε προπληρωμένο εισιτήριο από το Taxi Booth\n② Δεν υπάρχει ταξίμετρο — σταθερή τιμή\n③ Διαδρομή ~22 λεπτά\n\n📱 ΕΠΙΛΟΓΗ 3 — Bolt/Uber (~€15-18)\n① Κλείσε μέσα από την εφαρμογή\n② Σημείο pick-up: 2-4 λεπτά πεζή από την έξοδο προς τα parking\n\n🎙️ Tip Δούση:\n'Φτάνετε 15:05 και το check-in είναι 15:00. Η TD2 σας βολεύει τέλεια! Πάρτε την κάρτα εισιτηρίου στο μηχάνημα αφίξεων και σε μισή ώρα είστε στο δωμάτιό σας!'"
+          },
+          {
+            "days": [1],
+            "time": "17:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Spinola Bay & Paceville Βόλτα",
+            "mapQuery": "Spinola Bay St Julian's Malta",
+            "distance": "5' πεζή από το ξενοδοχείο",
+            "tip": "Η πιο γραφική βόλτα για να ξεκινήσεις το ταξίδι.",
+            "cost": "Δωρεάν",
+            "description": "📖 Τοποθεσία:\nΗ Spinola Bay είναι η ζωντανή καρδιά του St. Julian's. Παρελάσεις χρωματιστών αλιευτικών σκαφών, γραφικά καφέ και ατμοσφαιρικά εστιατόρια κατά μήκος της ακτής.\n\nΑπό εδώ, ο παραλιακός πεζόδρομος σε οδηγεί νότια προς Σλίεμα και βόρεια προς το Portomaso Marina και τους εντυπωσιακούς πύργους Mercury Towers του Zaha Hadid.\n\n🎙️ Tip Δούση:\n'Η πρώτη βόλτα δεν έχει πρόγραμμα. Βγείτε από το ξενοδοχείο, πιάστε έναν καφέ στην παραλία και αφήστε τα μάτια σας να πιουν τη θάλασσα. Αύριο αρχίζει η εξερεύνηση!'"
+          },
+          {
+            "days": [1],
+            "time": "20:00",
+            "category": "🥪 Φαγητό",
+            "name": "Περιοχή St. Julian's — Πρώτο Βράδυ",
+            "mapQuery": "restaurants St Julian's Spinola Bay Malta",
+            "distance": "5' πεζή",
+            "tip": "Πάμπολλες επιλογές στη Spinola Bay για το πρώτο μαλτέζικο δείπνο.",
+            "cost": "~€25-40",
+            "description": "📖 Γαστρονομική Ανάλυση:\nΓια το πρώτο σου βράδυ, μείνε κοντά στο ξενοδοχείο. Η Spinola Bay έχει δεκάδες επιλογές για κάθε γούστο.\n\nΓια αυθεντικό μαλτέζικο: Κοίταξε για εστιατόρια που σερβίρουν Stuffat tal-Fenek (κουνέλι στιφάδο) — το εθνικό πιάτο.\n\nΓια θαλασσινά: Ψάξε ψαροταβέρνες με φρέσκα ντόπια ψάρια.\n\n🎙️ Tip Δούση:\n'Πρώτο βράδυ — απαγορεύεται το stress! Κάτσε στην πρώτη παραλιακή ταβέρνα που σου αρέσει, παράγγειλε ό,τι σου μυρίσει καλά, και απόλαυσε τον Μεσογειακό αέρα. Σύντομα θα γνωρίσεις πολύ καλύτερα το νησί!'"
+          },
 
-        // Συνάρτηση αφαίρεσης τόνων για απροβλημάτιστο φιλτράρισμα στα Ελληνικά
-        const removeAccents = (str) => {
-            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-        };
+          /* ──────────────────────── ΗΜΕΡΑ 2 — Δευ 12/5 ──────────────────── */
+          {
+            "days": [2],
+            "time": "10:00",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Mdina (Η Σιωπηλή Πόλη)",
+            "mapQuery": "Mdina Silent City Malta",
+            "distance": "~35' (Bus 13/14 → Βαλέτα, μετά 202 → Mdina)",
+            "tip": "Χαθείτε στα μεσαιωνικά στενάκια χωρίς αυτοκίνητα.",
+            "cost": "Δωρεάν",
+            "description": "📖 Ιστορική Ανάλυση:\nΠριν χτιστεί η Βαλέτα, η Mdina ήταν η πρωτεύουσα. Γνωστή ως 'Citta Vecchia', είναι αριστοκρατική καστροπολιτεία χωρίς αυτοκίνητα. Γυρίστηκε ως τοποθεσία στο Game of Thrones.\n\n🚌 Πώς να πας:\nΑπό St. Julian's: Bus 13/14/15 → Βαλέτα (20 λεπτά) → Bus 52/53 ή 202 → Mdina (15 λεπτά)\n\n🎙️ Tip Δούση:\n'Μόλις περάσετε την πύλη, θα καταλάβετε γιατί λέγεται Σιωπηλή Πόλη. Κλείστε τον χάρτη στο κινητό, χαθείτε στα δαιδαλώδη στενάκια και περπατήστε μέχρι την πλατεία Bastion στην άκρη των τειχών για θέα που κόβει την ανάσα!'"
+          },
+          {
+            "days": [2],
+            "time": "13:00",
+            "category": "🥪 Φαγητό",
+            "name": "Crystal Palace (Is-Serkin) — Pastizzi",
+            "mapQuery": "Crystal Palace pastizzi Rabat Malta",
+            "distance": "Έξω από τα τείχη, στο χωριό Rabat",
+            "tip": "Τα καλύτερα Pastizzi της Μάλτας — το απόλυτο street food.",
+            "cost": "~€2.00",
+            "description": "📖 Γαστρονομική Ανάλυση:\nΤα Pastizzi είναι η καρδιά της μαλτέζικης καθημερινότητας. Είναι ζύμη σφολιάτας γεμιστή με ρικότα (irkotta) ή κρεμώδη πουρέ αρακά (pizelli).\n\n🎙️ Tip Δούση:\n'Ακούστε προσεκτικά! Μια τρύπα στον τοίχο είναι αυτό το μαγαζί, γεμάτο ντόπιους που συζητάνε φωναχτά. Πάρτε τρία-τέσσερα pastizzi στο χέρι και ένα ζεστό τσάι σε παραδοσιακό γυάλινο ποτήρι. Όλο αυτό θα σας κοστίσει ελάχιστα!'"
+          },
+          {
+            "days": [2],
+            "time": "18:00",
+            "category": "🍸 Ποτό",
+            "name": "Fontanella Tea Garden (Mdina)",
+            "mapQuery": "Fontanella Tea Garden Mdina Malta",
+            "distance": "Πάνω στον προμαχώνα της Mdina",
+            "tip": "Θρυλικό κέικ σοκολάτας με πανοραμική θέα — ιδανικό για ηλιοβασίλεμα.",
+            "cost": "~€10.00",
+            "description": "📖 Τοποθεσία & Γεύση:\nΣκαρφαλωμένο πάνω στον προμαχώνα της Mdina, το Fontanella είναι θεσμός από το 1975. Η θέα στη δύση του ηλίου πάνω από τα μεσαιωνικά τείχη είναι ανεπανάληπτη.\n\n🎙️ Tip Δούση:\n'Όταν πέφτει ο ήλιος, η Mdina αδειάζει. Ζητήστε τραπέζι στην πάνω βεράντα. Είτε πάρετε το θρυλικό κέικ σοκολάτας, είτε ένα Aperol Spritz, η αίσθηση του να βλέπεις τον ήλιο να βάφει χρυσές τις πέτρες του νησιού είναι ανεκτίμητη!'"
+          },
 
-        function filterData(type, value) {
-            if (type === 'day') {
-                currentDay = value;
-                document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
-            } else {
-                currentCat = value;
-                document.querySelectorAll('.btn-filter:not(.date-btn)').forEach(b => b.classList.remove('active'));
-            }
-            event.target.classList.add('active');
-            render();
-        }
+          /* ──────────────────────── ΗΜΕΡΑ 3 — Τρί 13/5 ──────────────────── */
+          {
+            "days": [3],
+            "time": "09:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Συν-Καθεδρικός Αγίου Ιωάννη (Βαλέτα)",
+            "mapQuery": "St John's Co-Cathedral Valletta Malta",
+            "distance": "~20' (Bus 13/14/15 από St. Julian's)",
+            "tip": "Η λιτή πρόσοψη κρύβει την πιο πλούσια Μπαρόκ αίθουσα στον κόσμο.",
+            "cost": "€15.00",
+            "description": "📖 Ιστορική Ανάλυση:\nΤο εσωτερικό είναι απόλυτο Μπαρόκ. Το δάπεδο αποτελείται από 400 περίτεχνους μαρμάρινους τάφους Ιπποτών. Η είσοδος ανέρχεται στα €15 για τους ενήλικες.\n\n⚠️ Κλειστό τις Κυριακές. Άνοιγμα 09:00–16:15.\n\n🚌 Πώς να πας:\nBus 13, 13A, 14 ή 15 από St. Julian's → Βαλέτα (Stazione), 20 λεπτά\n\n🎙️ Tip Δούση:\n'Το μυαλό σας δεν μπορεί να συλλάβει τον πλούτο! Ο πραγματικός θησαυρός είναι στο Ορατόριο, όπου κρέμεται ο 'Αποκεφαλισμός του Ιωάννη του Βαπτιστή', το μεγαλύτερο και το μόνο υπογεγραμμένο έργο του Καραβάτζιο!'"
+          },
+          {
+            "days": [3],
+            "time": "11:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Upper Barrakka Gardens (Βαλέτα)",
+            "mapQuery": "Upper Barrakka Gardens Valletta Malta",
+            "distance": "10' πεζή από τον Καθεδρικό",
+            "tip": "Η καλύτερη θέα του Grand Harbour — κανόνι στις 12:00 και 16:00.",
+            "cost": "Δωρεάν",
+            "description": "📖 Τοποθεσία:\nΟι κήποι βρίσκονται στα ψηλότερα τείχη της Βαλέτας και προσφέρουν την πιο εντυπωσιακή πανοραμική άποψη του Grand Harbour και των Τριών Πόλεων.\n\nΜη χάσεις την πυροβολιά του Saluting Battery — γίνεται καθημερινά στις 12:00 και 16:00.\n\nΑπό εδώ μπορείς να πάρεις το Barrakka Lift (ασανσέρ) κατεβαίνοντας στο λιμάνι για το ferry των 3 Πόλεων.\n\n🎙️ Tip Δούση:\n'Σταθείτε στην άκρη του προμαχώνα. Απέναντί σας ξεδιπλώνεται το μεγαλύτερο φυσικό λιμάνι της Μεσογείου. Αυτή είναι η φωτογραφία που θα αναρτάτε για χρόνια!'"
+          },
+          {
+            "days": [3],
+            "time": "13:30",
+            "category": "🥪 Φαγητό",
+            "name": "Nenu The Artisan Baker (Βαλέτα)",
+            "mapQuery": "Nenu The Artisan Baker Valletta Malta",
+            "distance": "Στα στενάκια της Βαλέτας",
+            "tip": "Ο ναός της παραδοσιακής μαλτέζικης Ftira.",
+            "cost": "~€20.00",
+            "description": "📖 Γαστρονομική Ανάλυση:\nΗ Ftira φτιάχνεται από σκληρό Μαλτέζικο προζύμι, κάτι που της δίνει τραγανή κρούστα αλλά αφράτο εσωτερικό. Ψήνεται σε παραδοσιακό ξυλόφουρνο.\n\n🎙️ Tip Δούση:\n'Στον Nenu, ζητήστε τη Ftira Ta' Karmni. Είναι φορτωμένη με φρέσκια ντομάτα, ντόπια κάπαρη, ελιές και πικάντικο μαλτέζικο λουκάνικο. Πάρτε μία στη μέση με μια παγωμένη τοπική μπύρα Cisk!'"
+          },
+          {
+            "days": [3],
+            "time": "16:00",
+            "category": "⛴️ Μεταφορές",
+            "name": "Ferry για τις Τρεις Πόλεις (3 Cities)",
+            "mapQuery": "Barrakka Lift Valletta ferry 3 Cities Malta",
+            "distance": "Από Upper Barrakka (Barrakka Lift)",
+            "tip": "10 λεπτά διαδρομή — η πιο εντυπωσιακή θέα του Grand Harbour.",
+            "cost": "€2.00",
+            "description": "📖 Ανάλυση:\nΟι Τρεις Πόλεις (Vittoriosa, Senglea, Cospicua) είναι παλαιότερες από τη Βαλέτα και πολύ πιο ήσυχες. Το καραβάκι κοστίζει €2.00 για απλή μετάβαση.\n\n🎙️ Tip Δούση:\n'Κατεβείτε με το Barrakka Lift στο επίπεδο της θάλασσας και περάστε απέναντι στις 3 Πόλεις. Εκεί θα περπατήσετε στη Vittoriosa χωρίς ορδές τουριστών — αυτή είναι η αυθεντική Μάλτα!'"
+          },
+          {
+            "days": [3],
+            "time": "21:00",
+            "category": "🍸 Ποτό",
+            "name": "Strait Street — Το παλιό 'Gut' (Βαλέτα)",
+            "mapQuery": "Strait Street Valletta Malta",
+            "distance": "Καρδιά της Βαλέτας",
+            "tip": "Η οδός της αμαρτίας που μεταμορφώθηκε στο hot spot της Βαλέτας.",
+            "cost": "~€12.00",
+            "description": "📖 Ιστορική Ανάλυση:\nΣτο παρελθόν, η Strait Street ήταν το κέντρο της πορνείας, των ναυτών και της τζαζ. Σήμερα έχει ανακαινιστεί πλήρως διατηρώντας τα vintage στοιχεία της.\n\n🎙️ Tip Δούση:\n'Όλη η ενέργεια της νυχτερινής Βαλέτας είναι εδώ! Πιάστε τραπεζάκι στο Cafe Society, πάρτε ένα κορυφαίο signature cocktail, αράξτε στα σκαλάκια και αφήστε τις μουσικές να σας παρασύρουν!'"
+          },
 
-        function render() {
-            const container = document.getElementById('content');
-            container.innerHTML = '';
-
-            currentDisplayData = allData.filter(item => {
-                const dayMatch = currentDay === 0 || (item.days && item.days.includes(currentDay));
-                let catMatch = true;
-                
-                if (currentCat !== 'all') {
-                    const itemCatClean = removeAccents(item.category);
-                    const searchCatClean = removeAccents(currentCat);
-                    catMatch = itemCatClean.includes(searchCatClean);
-                }
-                
-                return dayMatch && catMatch;
-            });
-
-            if (currentDisplayData.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:20px; color:#777;">Κενό Πρόγραμμα! Χαλαρώστε στο St. Julian\'s! 🍹</div>';
-                return;
-            }
-
-            currentDisplayData.forEach((item, index) => {
-                const distanceHtml = item.distance ? `<span class="distance-tag">👣 Από Βάση/Προηγούμενο: <b>${item.distance}</b></span>` : '';
-                const searchQuery = encodeURIComponent((item.mapQuery || item.name) + " Malta");
-                const realMapUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
-
-                container.innerHTML += `
-                    <div class="card">
-                        <div class="category-tag">${item.category}</div>
-                        <div class="name">${item.name}</div>
-                        ${distanceHtml}
-                        <div class="meta-info">
-                            <span class="time-badge">🕒 ${item.time || '-'}</span>
-                            <span class="cost-badge">💰 ${item.cost}</span>
-                        </div>
-                        <div class="tip">💡 ${item.tip}</div>
-                        <div class="card-actions">
-                            <button class="action-btn info-btn" onclick="openModal(${index})">ℹ️ Πλήρης Ανάλυση</button>
-                            <a href="${realMapUrl}" target="_blank" class="action-btn map-btn">📍 Χάρτης</a>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function openModal(index) {
-            const item = currentDisplayData[index];
-            if (!item) return;
-            document.getElementById('modalTitle').innerText = item.name;
-            document.getElementById('modalBody').innerText = item.description || item.tip;
-            
-            // Καθαρισμός κειμένου από Emojis και παραπομπές για το σύστημα φωνής
-            let cleanText = (item.description || item.tip).replace(/\]+\]/g, '');
-            currentTextToSpeak = cleanText.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
-            
-            document.getElementById('infoModal').style.display = 'flex';
-            stopSpeaking();
-        }
-
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
-            stopSpeaking();
-        }
-
-        function startSpeaking() {
-            if (synth.speaking) return;
-            if (currentTextToSpeak) {
-                const utterThis = new SpeechSynthesisUtterance(currentTextToSpeak);
-                utterThis.lang = 'el-GR';
-                utterThis.rate = 0.95;
-                utterThis.onend = () => toggleAudioButtons(false);
-                synth.speak(utterThis);
-                toggleAudioButtons(true);
-            }
-        }
-
-        function stopSpeaking() {
-            if (synth.speaking) synth.cancel();
-            toggleAudioButtons(false);
-        }
-
-        function toggleAudioButtons(isSpeaking) {
-            document.getElementById('speakBtn').style.display = isSpeaking ? 'none' : 'block';
-            document.getElementById('stopBtn').style.display = isSpeaking ? 'block' : 'none';
-        }
-    </script>
-</body>
-</html>
+          /* ──────────────────────── ΗΜΕΡΑ 4 — Τετ 14/5 ──────────────────── */
+          {
+            "days": [4],
+            "time": "09:30",
+            "category": "⛴️ Μεταφορές",
+            "name": "Gozo HighSpeed Ferry",
+            "mapQuery": "Lascaris Wharf Valletta fast ferry Gozo Malta",
+            "distance": "Bus 13/14 → Βαλέτα → Lascaris Wharf",
+            "tip": "Ο πιο γρήγορος τρόπος — 45 λεπτά κατευθείαν για Gozo.",
+            "cost": "€7.00 (απλή)",
+            "description": "📖 Ανάλυση διαδρομής:\nΤο γρήγορο πλοίο (Gozo Highspeed) αναχωρεί από το Lascaris Wharf στη Βαλέτα. Κοστίζει €7.00 απλή μετάβαση (€13.00 για επιστροφή). Διαδρομή 45 λεπτά.\n\n🚌 Πώς να πας:\nAπό The Londoner: Bus 13/14 → Βαλέτα (20 λεπτά) → 10 λεπτά πεζή στο Lascaris Wharf\n\n🎙️ Tip Δούση:\n'Ακούστε το μεγαλύτερο ταξιδιωτικό hack! Αντί να ταλαιπωρηθείτε 1 ώρα με το λεωφορείο για το βορρά για το παλιό πορθμείο, παίρνετε το καταμαράν από τη Βαλέτα σε 45 λεπτά. Γρήγορα, ξεκούραστα, εντυπωσιακή διαδρομή!'"
+          },
+          {
+            "days": [4],
+            "time": "11:30",
+            "category": "🏛️ Αξιοθέατα",
+            "name": "Η Ακρόπολη (Citadel) — Victoria, Gozo",
+            "mapQuery": "Citadel Victoria Gozo Malta",
+       
